@@ -1,0 +1,25 @@
+﻿@model Library
+<form asp-controller="Library" asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" type="text" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="MSDN" class="form-label"></label>
+        <input asp-for="MSDN" type="text" class="form-control" />
+        <span asp-validation-for="MSDN" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Pages" class="form-label"></label>
+        <input asp-for="Pages" type="text" class="form-control" />
+        <span asp-validation-for="Pages" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" value="Add" />
+    </div>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
