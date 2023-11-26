@@ -1,5 +1,5 @@
-﻿using AspNetCoreFromBasic.Data;
-using AspNetCoreFromBasic.Models;
+﻿using AspNetCore.DataAccess;
+using AspNetCore.Models;
 
 namespace AspNetCoreFromBasic.Repository
 {

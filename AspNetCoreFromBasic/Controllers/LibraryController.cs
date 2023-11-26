@@ -1,4 +1,4 @@
-﻿using AspNetCoreFromBasic.Models;
+﻿using AspNetCore.Models;
 using AspNetCoreFromBasic.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,6 +40,12 @@ namespace AspNetCoreFromBasic.Controllers
         }
         [HttpGet]
         public IActionResult Edit(int id)
+        {
+            Library lib = _repo.GetById(id);
+            return View(lib);
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
         {
             Library lib = _repo.GetById(id);
             return View(lib);

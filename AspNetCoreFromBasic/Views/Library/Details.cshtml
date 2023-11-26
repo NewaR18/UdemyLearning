@@ -1,0 +1,18 @@
+﻿@model Library
+<form>
+    <div>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" type="text" class="form-control" readonly/>
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="MSDN" class="form-label"></label>
+        <input asp-for="MSDN" type="text" class="form-control" readonly />
+        <span asp-validation-for="MSDN"></span>
+    </div>
+    <div>
+        <label asp-for="Pages" class="form-label"></label>
+        <input asp-for="Pages" type="text" class="form-control" readonly/>
+        <span asp-validation-for="Pages"></span>
+    </div>
+</form>

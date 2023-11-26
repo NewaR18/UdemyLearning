@@ -1,4 +1,4 @@
-using AspNetCoreFromBasic.Data;
+using AspNetCore.DataAccess;
 using AspNetCoreFromBasic.Repository;
 using Microsoft.EntityFrameworkCore;
 

@@ -5,56 +5,61 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AspNetCoreFromBasic
 build_property.RootNamespace = AspNetCoreFromBasic
-build_property.ProjectDir = C:\Users\sudip\source\repos\Infodev\Trainee\UdemyCode\AspNetCoreFromBasic\AspNetCoreFromBasic\
+build_property.ProjectDir = D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\sudip\source\repos\Infodev\Trainee\UdemyCode\AspNetCoreFromBasic\AspNetCoreFromBasic
+build_property.MSBuildProjectDirectory = D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Home/Index.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Home/Privacy.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Library/Create.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Library/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicmFyeVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Library/Edit.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Library/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicmFyeVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Library/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicmFyeVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Library/Index.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Library/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicmFyeVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Shared/Error.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Shared/_Notification.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Shared/_Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/_ViewImports.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/_ViewStart.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sudip/source/repos/Infodev/Trainee/UdemyCode/AspNetCoreFromBasic/AspNetCoreFromBasic/Views/Shared/_Layout.cshtml]
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-83w29vtzkv
