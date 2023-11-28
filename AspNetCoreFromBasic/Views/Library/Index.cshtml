@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Library>
+<a class="bg-primary text-light" asp-controller="Library" asp-action="Create">Create</a>
 <table class="table-bordered table table-striped">
     <thead>
         <tr>
@@ -10,11 +11,14 @@
         </tr>
     </thead>
     <tbody>
+        @{
+            int id = 1;
+        }
         @foreach(var obj in Model)
         {
             <tr>
                 <td>
-                    @obj.id
+                    @id
                 </td>
                 <td>
                     @obj.Name
@@ -29,6 +33,7 @@
                     <a asp-action="Edit" asp-route-id="@obj.id"><i class="bi bi-pen"></i></a> || <a asp-action="Details" asp-route-id="@obj.id"><i class="bi bi-eye"></i></a> || <a asp-action="Delete" asp-route-id="@obj.id"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>
+            id = id + 1;
         }
     </tbody>
 </table>

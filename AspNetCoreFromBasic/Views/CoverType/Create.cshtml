@@ -1,0 +1,16 @@
+﻿@model CoverType
+<form asp-controller="CoverType" asp-action="Create" method="post" class="mb-3">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" type="text" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" value="Add" />
+    </div>
+</form>
+<a class="bg-primary text-light p-2 text-decoration-none mt-3" asp-controller="CoverType" asp-action="Index">Back To Index</a>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

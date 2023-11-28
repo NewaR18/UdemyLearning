@@ -1,19 +1,20 @@
-﻿using AspNetCore.Models;
-using AspNetCoreFromBasic.Repository;
+﻿using AspNetCore.DataAccess.Repository;
+using AspNetCore.DataAccess.Repository.IRepository;
+using AspNetCore.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFromBasic.Controllers
 {
     public class LibraryController : Controller
     {
-        private readonly ILibraryRepo _repo;
-        public LibraryController(ILibraryRepo repo)
+        private readonly IUnitOfWork _repo;
+        public LibraryController(IUnitOfWork repo)
         {
             _repo = repo;
         }
         public IActionResult Index()
         {
-            IEnumerable<Library> books = _repo.Index();
+            IEnumerable<Library> books = _repo.LibraryRepo.GetAll();
             return View(books);
         }
         [HttpGet]
@@ -31,7 +32,8 @@ namespace AspNetCoreFromBasic.Controllers
             }
             if (ModelState.IsValid)
             {
-                _repo.Create(lib);
+                _repo.LibraryRepo.Add(lib);
+                _repo.Save();
                 TempData["success"] = "New Item Created Successfully";
                 return RedirectToAction("Index");
             }
@@ -41,25 +43,28 @@ namespace AspNetCoreFromBasic.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Library lib = _repo.GetById(id);
+            Library lib = _repo.LibraryRepo.GetFirstOrDefault(x=>x.id == id);
             return View(lib);
         }
         [HttpGet]
         public IActionResult Details(int id)
         {
-            Library lib = _repo.GetById(id);
+            Library lib = _repo.LibraryRepo.GetFirstOrDefault(x => x.id == id);
             return View(lib);
         }
         [HttpPost]
         public IActionResult Edit(Library lib)
         {
-            _repo.Update(lib);
+            _repo.LibraryRepo.Update(lib);
+            _repo.Save();
             TempData["success"] = "Item Updated Successfully";
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
         {
-            _repo.Delete(id);
+            Library entity = _repo.LibraryRepo.GetFirstOrDefault(x => x.id == id);
+            _repo.LibraryRepo.Remove(entity);
+            _repo.Save();
             TempData["success"] = "Item Deleted Successfully";
             return RedirectToAction("Index");
         }

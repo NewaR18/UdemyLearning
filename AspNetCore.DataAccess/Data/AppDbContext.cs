@@ -1,7 +1,7 @@
 ﻿using AspNetCore.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCore.DataAccess
+namespace AspNetCore.DataAccess.Data
 {
     public class AppDbContext:DbContext
     {
@@ -10,5 +10,7 @@ namespace AspNetCore.DataAccess
 
         }
         public DbSet<Library> Library { get; set; }
+        public DbSet<CoverType> CoverType { get; set; }
+
     }
 }

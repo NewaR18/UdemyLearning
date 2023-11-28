@@ -517,7 +517,6 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspN
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.AssemblyInfoInputs.cache
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.AssemblyInfo.cs
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.csproj.CoreCompileInputs.cache
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.MvcApplicationPartsAssemblyInfo.cs
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.MvcApplicationPartsAssemblyInfo.cache
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.RazorAssemblyInfo.cache
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.RazorAssemblyInfo.cs
@@ -541,3 +540,4 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspN
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspNetCore.Models.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspNetCore.DataAccess.pdb
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspNetCore.Models.pdb
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.MvcApplicationPartsAssemblyInfo.cs

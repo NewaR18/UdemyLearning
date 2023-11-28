@@ -1,5 +1,8 @@
-using AspNetCore.DataAccess;
-using AspNetCoreFromBasic.Repository;
+
+using AspNetCore.DataAccess.Data;
+using AspNetCore.DataAccess.Repository;
+using AspNetCore.DataAccess.Repository.IRepository;
+using AspNetCore.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 var conStr = builder.Configuration.GetConnectionString("Myconnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conStr));
-builder.Services.AddScoped<ILibraryRepo, LibraryRepo>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

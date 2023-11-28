@@ -16,6 +16,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/CoverType/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ292ZXJUeXBlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/CoverType/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ292ZXJUeXBlXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/CoverType/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ292ZXJUeXBlXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/CoverType/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ292ZXJUeXBlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

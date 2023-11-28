@@ -10,7 +10,7 @@ namespace AspNetCore.Models
         [StringLength(30, ErrorMessage = "Why insert more than that")]
         public string Name { get; set; }
         [Required]
-        [StringLength(5, ErrorMessage = "haha")]
+        [StringLength(15, ErrorMessage = "MSDN cannot be of size more than 15")]
         public string MSDN { get; set; }
         [Required]
         [Display(Name = "Total Page")]
