@@ -1,0 +1,60 @@
+﻿@using System.Security.Claims;
+@{
+    var isExternalLogin = User.FindFirst(ClaimTypes.NameIdentifier);
+    var GoogleClaim = isExternalLogin.Subject.Claims.FirstOrDefault(x => x.Value == "Google");
+}
+<div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+    <div class="mobile-sidebar-header d-md-none">
+        <div class="header-logo">
+            <a href="index.html"><img src="img/logo1.png" alt="logo"></a>
+        </div>
+    </div>
+    <div class="sidebar-menu-content">
+        <div class="flex-shrink-0 bg-white">
+            <ul class="list-unstyled ps-0">
+                <li class="nav-item">
+                    <button class="btn btn-toggle align-items-center rounded" aria-expanded="false">
+                        <a asp-area="Admin" asp-controller="Account" asp-action="Profile" class="nav-link">Profile</a>
+                    </button>
+                </li>
+                <li class="mb-1">
+                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                        Password
+                    </button>
+                    <div class="collapse" id="dashboard-collapse" style="margin-left:30px; width:100%">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            @if (GoogleClaim != null)
+                            {
+                                <li>
+                                    <a asp-area="Admin" asp-controller="Account" asp-action="SetPassword" class="nav-link"><b><i class="bi bi-person"></i>Set Password</b></a>
+                                </li>
+                                <li>
+                                    <hr />
+                                </li>
+                            }
+                            <li>
+                                <a asp-area="Admin" asp-controller="Account" asp-action="ChangePassword" class="nav-link"><b><i class="bi bi-person"></i>Change Password</b></a>
+                            </li>
+                            <li>
+                                <hr />
+                            </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="Account" asp-action="GenerateRecoveryCodes" class="nav-link"><b><i class="bi bi-person"></i>Recovery Code</b></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-toggle align-items-center rounded" aria-expanded="false">
+                        <a asp-area="Admin" asp-controller="Account" asp-action="TwoFactorAuthentication" class="nav-link">2 Factor Auth</a>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-toggle align-items-center rounded" aria-expanded="false">
+                        <a asp-area="Admin" asp-controller="Account" asp-action="UpdateEmail" class="nav-link">Update Email</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

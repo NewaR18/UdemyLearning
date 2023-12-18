@@ -17,10 +17,13 @@ namespace AspNetCore.DataAccess.Repository
             _context = context;
             LibraryRepo=new LibraryRepo(_context);
             CoverTypeRepo = new CoverTypeRepo(_context);
+            CategoryRepo = new CategoryRepo(_context);
+            ProductRepo = new ProductRepo(_context);
         }
         public ILibraryRepo LibraryRepo { get; private set; }
         public ICoverTypeRepo CoverTypeRepo { get; private set; }
-
+        public ICategoryRepo CategoryRepo { get; private set; }
+        public IProductRepo ProductRepo { get; private set; }  
         public void Save()
         {
             _context.SaveChanges();

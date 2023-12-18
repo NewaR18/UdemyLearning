@@ -296,7 +296,6 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Micr
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.DotNet.Scaffolding.Shared.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
@@ -304,7 +303,6 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Micr
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
@@ -329,7 +327,6 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Micr
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Mono.TextTemplating.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\NuGet.Common.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\NuGet.Configuration.dll
@@ -343,7 +340,6 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\NuGe
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.CodeDom.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Composition.AttributedModel.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Composition.Convention.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Composition.Hosting.dll
@@ -357,8 +353,6 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Syst
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Runtime.Caching.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Security.Permissions.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Text.Encodings.Web.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Text.Json.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Windows.Extensions.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\af\Humanizer.resources.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\ar\Humanizer.resources.dll
@@ -499,8 +493,6 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\ru\M
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
@@ -508,9 +500,7 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runt
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.csproj.AssemblyReference.cache
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.GeneratedMSBuildEditorConfig.editorconfig
@@ -541,3 +531,26 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspN
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspNetCore.DataAccess.pdb
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspNetCore.Models.pdb
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\obj\Debug\net6.0\AspNetCoreFromBasic.MvcApplicationPartsAssemblyInfo.cs
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Mono.TextTemplating.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.CodeDom.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\System.Text.Json.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspNetCore.Utilities.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\AspNetCore.Utilities.pdb
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll

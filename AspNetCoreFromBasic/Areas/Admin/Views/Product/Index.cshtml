@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Product>
+<style>
+    #tblData_wrapper{
+        margin-top: 20px;
+    }
+</style>
+<a class="bg-primary text-light p-2 text-decoration-none" asp-controller="Product" asp-action="Upsert">Create New</a>
+<table id="tblData" class="table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Price</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*DataTable here*@
+    </tbody>
+</table>
+<script src="~/js/product.js"></script>

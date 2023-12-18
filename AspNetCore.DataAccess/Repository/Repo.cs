@@ -22,13 +22,29 @@ namespace AspNetCore.DataAccess.Repository
         {
             DbSet.Add(entity);
         }
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? IncludeProperties = null)
         {
-            return DbSet;
+            IQueryable<T> query = DbSet;
+            if (IncludeProperties != null)
+            {
+                foreach(var property in IncludeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries)) 
+                {
+                    query = query.Include(property);
+                }
+            }
+            return query;
         }
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? IncludeProperties = null)
         {
-            return DbSet.Where(filter).FirstOrDefault();
+            IQueryable<T> query = DbSet.Where(filter);
+            if (IncludeProperties != null)
+            {
+                foreach (var property in IncludeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
+            return query.FirstOrDefault(filter);
         }
         public void Remove(T entity)
         {

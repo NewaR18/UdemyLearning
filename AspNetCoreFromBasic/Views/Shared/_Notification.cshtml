@@ -9,6 +9,6 @@
 @if (TempData["error"] != null)
 {
     <script>
-        toastr.success('@TempData["error"]')
+        toastr.error('@TempData["error"]')
     </script>
 }

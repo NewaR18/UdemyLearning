@@ -1,0 +1,101 @@
+﻿@model AspNetCore.Models.ViewModel.ProductViewModel;
+<style>
+    .tox-editor-header, .tox-statusbar{
+        display:none!important;
+    }
+
+    .tox-sidebar-wrap {
+        height:auto;
+    }
+    #tinymce{
+        padding: 5px!important;
+        margin:5px!important
+    }
+</style>
+<form>
+    <div class="row">
+        <div class="col-10">
+            <div class="row">
+                <div class="p-1 col-12">
+                    <label asp-for="Product.Title" class="form-label"></label>
+                    <input asp-for="Product.Title" type="text" class="form-control" readonly disabled />
+                    <span asp-validation-for="Product.Title" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-12">
+                    <label asp-for="Product.Description" class="form-label"></label>
+                    <div id="trythis" class="form-control">
+                    </div>
+                    <span asp-validation-for="Product.Description" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.ISBN" class="form-label"></label>
+                    <input asp-for="Product.ISBN" type="text" class="form-control" readonly disabled />
+                    <span asp-validation-for="Product.ISBN" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.Author" class="form-label"></label>
+                    <input asp-for="Product.Author" type="text" class="form-control" readonly disabled />
+                    <span asp-validation-for="Product.Author" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.ListPrice" class="form-label"></label>
+                    <input asp-for="Product.ListPrice" type="number" class="form-control" readonly disabled />
+                    <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.Price" class="form-label"></label>
+                    <input asp-for="Product.Price" type="number" class="form-control" readonly disabled />
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.Price50" class="form-label"></label>
+                    <input asp-for="Product.Price50" type="number" class="form-control" readonly disabled />
+                    <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.Price100" class="form-label"></label>
+                    <input asp-for="Product.Price100" type="number" class="form-control" readonly disabled/>
+                    <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.CategoryId" class="form-label"></label>
+                    <select asp-for="Product.CategoryId" asp-items="Model.CategoryList" class="form-select" readonly disabled>
+                        <option selected disabled>--Select Category--</option>
+                    </select>
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-6">
+                    <label asp-for="Product.CoverTypeId" class="form-label"></label>
+                    <select asp-for="Product.CoverTypeId" asp-items="Model.CoverTypeList" class="form-select" readonly disabled>
+                        <option selected disabled>--Select CoverType--</option>
+                    </select>
+                    <span asp-validation-for="Product.CoverTypeId" class="text-danger"></span>
+                </div>
+                <div class="p-1 col-12">
+                    <a asp-action="Index" class="btn btn-primary w-25 pt-2 mt-2">Back to List</a>
+                </div>
+                <div id="DescriptionHtml" hidden>
+                    @Model.Product.Description
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            @if (Model.Product.ImageURL != null)
+            {
+                <div class="col-2">
+                    <img src="@Model.Product.ImageURL" alt="profile" style="height:250px; border-radius:2px;" />
+                </div>
+            }
+        </div>
+    </div>
+    
+
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        DescriptionHtml = $("#DescriptionHtml").text();
+        DescriptionHtml = $.parseHTML(DescriptionHtml);
+        $("#trythis").append(DescriptionHtml);
+    </script>
+}

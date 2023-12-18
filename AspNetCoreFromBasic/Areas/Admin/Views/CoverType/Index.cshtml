@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CoverType>
+<a class="bg-primary text-light p-2 text-decoration-none" asp-controller="CoverType" asp-action="Create">Create</a>
+<table class="table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int id = 1;
+        }
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td>
+                    @id
+                </td>
+                <td>
+                    @obj.Name
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pen"></i></a> || <a asp-action="Details" asp-route-id="@obj.Id"><i class="bi bi-eye"></i></a> || <a onclick="Delete('/Admin/CoverType/Delete/@obj.Id')"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            id = id + 1;
+        }
+    </tbody>
+</table>
+<script src="~/js/deletetdrow.js"></script>

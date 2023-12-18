@@ -1,0 +1,98 @@
+﻿@model ProfileIndexModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <partial name="_SideNavBar" />
+    </div>
+    <div class="col-md-9">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h3>@ViewData["Title"]</h3>
+            </div>
+            <div class="me-2">
+                <button type="button" id="updateProfile" class="btn btn-primary p-1" style="background-color:#012970!important; color:white;">Update</button>
+            </div>
+        </div>
+        <form id="profile-form" method="post" enctype="multipart/form-data">
+            <input asp-for="Email" class="form-control" aria-required="true" hidden/>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating p-3 mt-2 col-12">
+                        <input asp-for="Name" class="form-control" aria-required="true" readonly/>
+                        <label asp-for="Name" class="form-label text-dark fw-bold"></label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating  p-3 mt-2 col-12">
+                        <input asp-for="Email" class="form-control" readonly />
+                        <label asp-for="Email" class="form-label text-dark fw-bold"></label>
+                    </div>
+                    <div class="form-floating p-3 mt-2 col-12">
+                        <input asp-for="PhoneNumber" class="form-control" readonly/>
+                        <label asp-for="PhoneNumber" class="form-label text-dark fw-bold"></label>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating p-3 mt-2 col-12">
+                        <input asp-for="Address" class="form-control" aria-required="true" readonly/>
+                        <label asp-for="Address" class="form-label text-dark fw-bold"></label>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating p-3 mt-2 col-12">
+                        Gender: &nbsp;<input asp-for="Gender" class="" aria-required="true" type="radio" value="M" disabled/>&nbsp; &nbsp; Male &nbsp; &nbsp;&nbsp; &nbsp;
+                        <input asp-for="Gender" class="" aria-required="true" type="radio" value="F" disabled/>&nbsp; &nbsp; Female
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="p-1">
+                        <label asp-for="ImageURL" class="form-label"></label>
+                        <input asp-for="ImageURL" type="text" class="form-control" hidden>
+                        <input type="file" id="imgBox" name="file" class="form-control" onchange="readURL(this);" disabled/>
+                    </div>
+                    @if (Model.ImageURL != null)
+                    {
+                        <div class="col-2" id="divImageProfile">
+                            <img src="@Model.ImageURL" alt="profile" style="width: 150px; height:200px; border-radius:2px;" />
+                        </div>
+                    }
+                    <div class="col-2" id="divImagePreview" hidden>
+                        <img id="imagePreview" src="" alt="preview" style="width: 150px; height:200px; border-radius:2px;" />
+                    </div>
+                </div>
+            </div>
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary" hidden>Save</button>
+            
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function readURL(input){
+            if (input.files && input.files[0]) {
+                $("#divImagePreview").prop("hidden", false);
+                $("#divImageProfile").prop("hidden", true);
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#updateProfile").on('click',function(){
+            debugger;
+            $("#Name").prop("readonly", false);
+            $("#PhoneNumber").prop("readonly", false);
+            $("#Address").prop("readonly", false);
+            $("[name='Gender']").prop("disabled", false);
+            $("#imgBox").prop("disabled", false);
+            $("#update-profile-button").prop("hidden", false);
+        })
+    </script>
+}

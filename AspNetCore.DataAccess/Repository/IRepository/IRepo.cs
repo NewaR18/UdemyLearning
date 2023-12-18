@@ -9,9 +9,9 @@ namespace AspNetCore.DataAccess.Repository.IRepository
 {
     public interface IRepo<T> where T : class
     {
-        public IEnumerable<T> GetAll();
+        public IEnumerable<T> GetAll(string? IncludeProperties = null);
         public void Add(T entity);
-        public T GetFirstOrDefault(Expression<Func<T,bool>> filter);
+        public T GetFirstOrDefault(Expression<Func<T,bool>> filter, string? IncludeProperties = null);
         public void Remove(T entity);
         public void RemoveRange(IEnumerable<T> entities);
     }
