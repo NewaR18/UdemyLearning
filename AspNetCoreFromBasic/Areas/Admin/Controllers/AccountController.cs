@@ -435,6 +435,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     TempData["success"] = "User Updated Successfully";
+                    return RedirectToAction("Profile");
                 }
                 else
                 {
@@ -444,19 +445,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                     }
                 }
             }
-            var user2 = await _userManager.GetUserAsync(User);
-
-            ProfileIndexModel profileData2 = new ProfileIndexModel()
-            {
-                Name = user2.Name,
-                Email = user2.Email,
-                Address = user2.Address,
-                Gender = user2.Gender,
-                PhoneNumber = user2.PhoneNumber,
-                ImageURL = user2.ImageURL
-            };
-            TempData["success"] = "User Updated Successfully";
-            return View(profileData2);
+            return View();
         }
         public async Task<IActionResult> SetPassword()
         {

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<IdentityRole>
+
+<h2>Roles</h2>
+
+<div class="d-flex">
+    <a class="bg-primary text-light p-2 text-decoration-none" asp-controller="Role" asp-action="Create">Create</a>
+    <a class="bg-primary text-light p-2 text-decoration-none ms-2" asp-controller="Role" asp-action="RoleAssignment">Assign Role</a>
+    <a class="bg-primary text-light p-2 text-decoration-none ms-2" asp-controller="Role" asp-action="RoleAssignmentIndex">View Role</a>
+</div>
+<table class="table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int id = 1;
+        }
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    @id
+                </td>
+                <td>
+                    @obj.Name
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pen"></i></a> || <a asp-action="Details" asp-route-id="@obj.Id"><i class="bi bi-eye"></i></a> || <a onclick="Delete('/Admin/Role/Delete/@obj.Id')"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            id = id + 1;
+        }
+    </tbody>
+</table>
+<script src="~/js/deletetdrow.js"></script>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Menu>
+<h2>List of Menus</h2>
+<a class="bg-primary text-light p-2 text-decoration-none" asp-controller="Menu" asp-action="Create">Create</a>
+<table class="table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>Menu Code</th>
+            <th>Menu Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.MenuId
+                </td>
+                <td>
+                    @obj.Name
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@obj.MenuId"><i class="bi bi-pen"></i></a> || <a asp-action="Details" asp-route-id="@obj.MenuId"><i class="bi bi-eye"></i></a> || <a onclick="Delete('/Admin/Category/Delete/@obj.MenuId')"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/js/deletetdrow.js"></script>

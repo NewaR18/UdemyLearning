@@ -1,0 +1,19 @@
+﻿@model IdentityRole
+<h2>Update Role</h2>
+<form asp-controller="Role" asp-action="Edit" method="post" class="mb-3">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Id" hidden />
+    <input asp-for="ConcurrencyStamp" hidden />
+    <div class="py-2">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" type="text" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary" value="Update" />
+    </div>
+</form>
+<a class="bg-primary text-light p-2 text-decoration-none mt-3" asp-controller="Role" asp-action="Index">Back To Index</a>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

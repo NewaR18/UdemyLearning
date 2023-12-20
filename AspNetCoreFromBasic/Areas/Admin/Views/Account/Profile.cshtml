@@ -3,7 +3,6 @@
     ViewData["Title"] = "Profile";
 }
 
-
 <div class="row">
     <div class="col-md-3">
         <partial name="_SideNavBar" />
@@ -51,9 +50,9 @@
                     <div class="p-1">
                         <label asp-for="ImageURL" class="form-label"></label>
                         <input asp-for="ImageURL" type="text" class="form-control" hidden>
-                        <input type="file" id="imgBox" name="file" class="form-control" onchange="readURL(this);" disabled/>
+                        <input type="file" id="imgBox" name="file" class="form-control" onchange="readURL(this);" hidden/>
                     </div>
-                    @if (Model.ImageURL != null)
+                    @if (!string.IsNullOrEmpty(@Model.ImageURL))
                     {
                         <div class="col-2" id="divImageProfile">
                             <img src="@Model.ImageURL" alt="profile" style="width: 150px; height:200px; border-radius:2px;" />
@@ -91,7 +90,7 @@
             $("#PhoneNumber").prop("readonly", false);
             $("#Address").prop("readonly", false);
             $("[name='Gender']").prop("disabled", false);
-            $("#imgBox").prop("disabled", false);
+            $("#imgBox").prop("hidden", false);
             $("#update-profile-button").prop("hidden", false);
         })
     </script>

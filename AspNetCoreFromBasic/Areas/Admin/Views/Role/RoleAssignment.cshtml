@@ -1,0 +1,49 @@
+﻿@model RoleAssignmentViewModel
+<style>
+    .select2-search__field {
+        font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"!important;
+        font-size: 1rem!important;
+        font-weight:300!important;
+        color: #444!important;
+    }
+</style>
+<h2>Assign Role</h2>
+<form asp-controller="Role" method="post" class="mb-3">
+    <div asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="p-1 col-6">
+            <label asp-for="ApplicationUserId" class="form-label"></label>
+            <select class="js-example-basic-single form-select" asp-for="ApplicationUserId" asp-items="Model.UserList">
+                <option selected disabled>--Select User--</option>
+            </select>
+            <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+        </div>
+        <div class="p-1 col-6">
+            <label asp-for="IdentityRoleId" class="form-label"></label>
+            <select class="js-example-basic-multiple form-select" multiple="multiple" asp-for="IdentityRoleId" asp-items="Model.RoleList" >
+            </select>
+            <span asp-validation-for="IdentityRoleId" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Add" class="btn btn-primary" />
+    </div>
+</form>
+<a class="bg-primary text-light p-2 text-decoration-none mt-3" asp-controller="Role" asp-action="Index">Back To Index</a>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2({
+                placeholder: "-- Select Roles --"
+            });
+        });
+    </script>
+}

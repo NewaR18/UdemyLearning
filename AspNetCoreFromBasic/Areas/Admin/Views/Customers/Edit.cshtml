@@ -1,0 +1,75 @@
+﻿@model ProfileIndexModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<div>
+    <h3>@ViewData["Title"]</h3>
+    <form id="profile-form" method="post" enctype="multipart/form-data">
+        <input asp-for="Email" class="form-control" aria-required="true" hidden />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating p-3 mt-2 col-12">
+                    <input asp-for="Name" class="form-control" aria-required="true" />
+                    <label asp-for="Name" class="form-label text-dark fw-bold"></label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-floating  p-3 mt-2 col-12">
+                    <input asp-for="Email" class="form-control" />
+                    <label asp-for="Email" class="form-label text-dark fw-bold"></label>
+                </div>
+                <div class="form-floating p-3 mt-2 col-12">
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <label asp-for="PhoneNumber" class="form-label text-dark fw-bold"></label>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-floating p-3 mt-2 col-12">
+                    <input asp-for="Address" class="form-control" aria-required="true" />
+                    <label asp-for="Address" class="form-label text-dark fw-bold"></label>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-floating p-3 mt-2 col-12">
+                    Gender: &nbsp;<input asp-for="Gender" class="" aria-required="true" type="radio" value="M" />&nbsp; &nbsp; Male &nbsp; &nbsp;&nbsp; &nbsp;
+                    <input asp-for="Gender" class="" aria-required="true" type="radio" value="F" />&nbsp; &nbsp; Female
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="p-1">
+                    <label asp-for="ImageURL" class="form-label"></label>
+                    <input asp-for="ImageURL" type="text" class="form-control" hidden>
+                    <input type="file" id="imgBox" name="file" class="form-control" onchange="readURL(this);" />
+                </div>
+                @if (!string.IsNullOrEmpty(@Model.ImageURL))
+                {
+                    <div class="col-2" id="divImageProfile">
+                        <img src="@Model.ImageURL" alt="profile" style="width: 150px; height:200px; border-radius:2px;" />
+                    </div>
+                }
+                <div class="col-2" id="divImagePreview" hidden>
+                    <img id="imagePreview" src="" alt="preview" style="width: 150px; height:200px; border-radius:2px;" />
+                </div>
+            </div>
+        </div>
+        <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                $("#divImagePreview").prop("hidden", false);
+                $("#divImageProfile").prop("hidden", true);
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

@@ -1,0 +1,21 @@
+﻿<style>
+    #tblData_wrapper {
+        margin-top: 20px;
+    }
+</style>
+<h2>Roles of Users</h2>
+<a class="bg-primary text-light p-2 text-decoration-none" asp-controller="Role" asp-action="Index">Go Back</a>
+<a class="bg-primary text-light p-2 text-decoration-none ms-2" asp-controller="Role" asp-action="Create">Create New</a>
+<table id="tblData" class="table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Role Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*DataTable here*@
+    </tbody>
+</table>
+<script src="~/js/roleassignmentindex.js"></script>

@@ -1,0 +1,22 @@
+﻿@model UserRole
+<h2>User Role Details</h2>
+<form class="mb-3">
+    <div asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="p-1 col-6">
+            <label asp-for="UserName" class="form-label"></label>
+            <input class="form-control" asp-for="UserName" readonly>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+        </div>
+        <div class="p-1 col-6">
+            <label asp-for="RoleName" class="form-label"></label>
+            <input class="form-control" asp-for="RoleName" readonly>
+            <span asp-validation-for="RoleName" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+        </div>
+    </div>
+</form>
+<a class="bg-primary text-light p-2 text-decoration-none mt-3" asp-controller="Role" asp-action="RoleAssignmentIndex">Back To Index</a>

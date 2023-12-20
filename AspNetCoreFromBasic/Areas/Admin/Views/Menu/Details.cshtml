@@ -1,0 +1,9 @@
+﻿@model Menu 
+<form class="mb-3">
+    <div>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" type="text" class="form-control" readonly/>
+        <span asp-validation-for="Name"></span>
+    </div>
+</form>
+<a class="bg-primary text-light p-2 text-decoration-none mt-3" asp-controller="Menu" asp-action="Index">Back To Index</a>

@@ -45,6 +45,14 @@
       "PackagePath": "staticwebassets\\images\\users\\4fa75ac6-74f5-4806-a22a-4c430d129d28.jpg"
     },
     {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\5fa8b572-bd2e-4a0f-b265-6293f1090ec7.jpg",
+      "PackagePath": "staticwebassets\\images\\users\\5fa8b572-bd2e-4a0f-b265-6293f1090ec7.jpg"
+    },
+    {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\729bdb92-e940-4178-b366-d034f092c844.jpg",
+      "PackagePath": "staticwebassets\\images\\users\\729bdb92-e940-4178-b366-d034f092c844.jpg"
+    },
+    {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\be551c6b-9511-4255-ae6c-3df6501e590a.jpg",
       "PackagePath": "staticwebassets\\images\\users\\be551c6b-9511-4255-ae6c-3df6501e590a.jpg"
     },
@@ -53,12 +61,24 @@
       "PackagePath": "staticwebassets\\js\\DeleteTDrow.js"
     },
     {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\company.js",
+      "PackagePath": "staticwebassets\\js\\company.js"
+    },
+    {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\customer.js",
+      "PackagePath": "staticwebassets\\js\\customer.js"
+    },
+    {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\product.js",
       "PackagePath": "staticwebassets\\js\\product.js"
     },
     {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\qr.js",
       "PackagePath": "staticwebassets\\js\\qr.js"
+    },
+    {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\roleassignmentindex.js",
+      "PackagePath": "staticwebassets\\js\\roleassignmentindex.js"
     },
     {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\site.js",

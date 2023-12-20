@@ -1,0 +1,15 @@
+﻿@model Menu
+<form asp-controller="Menu" asp-action="Edit" class="mb-3">
+    <div>
+        <input asp-for="MenuId" type="text" class="form-control" hidden/>
+    </div>
+    <div>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" type="text" class="form-control" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="d-flex">
+        <input type="submit" value="Edit" />
+    </div>
+</form>
+<a class="bg-primary text-light p-2 text-decoration-none mt-3" asp-controller="Menu" asp-action="Index">Back To Index</a>

@@ -1,0 +1,23 @@
+﻿<style>
+    #tblData_wrapper {
+        margin-top: 20px;
+    }
+
+</style>
+<a class="bg-primary text-light p-2 text-decoration-none" asp-controller="Customers" asp-action="Create">Create New</a>
+<table id="tblData" class="table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*DataTable here*@
+    </tbody>
+</table>
+<script src="~/js/customer.js"></script>

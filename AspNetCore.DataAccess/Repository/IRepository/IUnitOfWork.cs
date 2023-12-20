@@ -12,6 +12,8 @@ namespace AspNetCore.DataAccess.Repository.IRepository
         public ICoverTypeRepo CoverTypeRepo { get; }
         public ICategoryRepo CategoryRepo {  get; }
         public IProductRepo ProductRepo { get; }
+        public ICompanyRepo CompanyRepo { get; }    
+        public IMenuRepo MenuRepo { get; }
         void Save();
     }
 }
