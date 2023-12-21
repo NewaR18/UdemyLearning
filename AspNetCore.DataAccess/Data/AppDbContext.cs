@@ -17,5 +17,6 @@ namespace AspNetCore.DataAccess.Data
         public DbSet<Company> Company { get; set; }
         public DbSet<Menu> Menu { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<ApplicationRole> ApplicationRole { get; set; }
     }
 }

@@ -20,7 +20,7 @@
                     @obj.Name
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@obj.MenuId"><i class="bi bi-pen"></i></a> || <a asp-action="Details" asp-route-id="@obj.MenuId"><i class="bi bi-eye"></i></a> || <a onclick="Delete('/Admin/Category/Delete/@obj.MenuId')"><i class="bi bi-trash"></i></a>
+                    <a asp-action="Edit" asp-route-id="@obj.MenuId"><i class="bi bi-pen"></i></a> || <a asp-action="Details" asp-route-id="@obj.MenuId"><i class="bi bi-eye"></i></a> || <a onclick="Delete('/Admin/Menu/Delete/@obj.MenuId')"><i class="bi bi-trash"></i></a>
                 </td>
             </tr>
         }

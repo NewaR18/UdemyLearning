@@ -1,13 +1,29 @@
-﻿@model IdentityRole
+﻿@model RoleModel
 <h2>Update Role</h2>
 <form asp-controller="Role" asp-action="Edit" method="post" class="mb-3">
     <div asp-validation-summary="All"></div>
-    <input asp-for="Id" hidden />
-    <input asp-for="ConcurrencyStamp" hidden />
+    <input asp-for="Role.Id" hidden />
+    <input asp-for="Role.ConcurrencyStamp" hidden />
     <div class="py-2">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" type="text" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+    <h4>Edit Role</h4>
+    <div class="row  mb-2">
+        @for (int i = 0; i < Model.AvailableMenus.Count; i++)
+        {
+            var menuId = Model.AvailableMenus[i].MenuId;
+            var isChecked = Model.SelectedMenuIds != null && Model.SelectedMenuIds.Contains(menuId.ToString());
+
+            <div class="col-3 mb-2">
+                <label>
+                    <input type="checkbox" name="SelectedMenuIds" value="@menuId" @(isChecked ? "checked" : "") />
+                    @Model.AvailableMenus[i].Name
+                </label>
+            </div>
+        }
     </div>
     <div>
         <input type="submit" class="btn btn-primary" value="Update" />

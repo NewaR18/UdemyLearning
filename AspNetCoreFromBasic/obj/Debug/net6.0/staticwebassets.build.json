@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sZh2iFy0QLI7r4aY4Zo3VZP+IC+mBI7/+SkSynNe0JY=",
+  "Hash": "tqzuRxoOor82GaS8xoRrQBgSOj42kBjX4kMNzOKv09w=",
   "Source": "AspNetCoreFromBasic",
   "BasePath": "_content/AspNetCoreFromBasic",
   "Mode": "Default",
@@ -1256,6 +1256,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\users\\5fa8b572-bd2e-4a0f-b265-6293f1090ec7.jpg"
+    },
+    {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\66835e6d-9cbc-4bcf-88c2-2793652510cb.jpg",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "images/users/66835e6d-9cbc-4bcf-88c2-2793652510cb.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\users\\66835e6d-9cbc-4bcf-88c2-2793652510cb.jpg"
     },
     {
       "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\729bdb92-e940-4178-b366-d034f092c844.jpg",

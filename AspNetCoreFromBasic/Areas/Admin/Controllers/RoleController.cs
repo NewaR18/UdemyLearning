@@ -1,40 +1,58 @@
 ﻿using AspNetCore.DataAccess.Data;
+using AspNetCore.DataAccess.Repository;
+using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
 using AspNetCore.Models.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Transactions;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
     public class RoleController : Controller
     {
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly AppDbContext _context;
-        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, AppDbContext context)
+        private readonly IUnitOfWork _unitOfWork;
+        public RoleController(RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
         {
             _roleManager = roleManager;
-            _userManager= userManager;
-            _context= context;
+            _userManager = userManager;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<IdentityRole> data=_roleManager.Roles;
+            IEnumerable<ApplicationRole> data=_roleManager.Roles;
             return View(data);
         }
         public IActionResult Create()
         {
-            return View();
+            RoleModel roleModel = new RoleModel()
+            {
+                AvailableMenus = _unitOfWork.MenuRepo.GetAll().Select(x => new Menu()
+                {
+                    MenuId = x.MenuId,
+                    Name = x.Name
+                }).ToList(),
+            };
+            return View(roleModel);
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(RoleModel entity)
         {
             if(ModelState.IsValid)
             {
-                var result=await _roleManager.CreateAsync(new IdentityRole(entity.Name));
+                ApplicationRole role=new ApplicationRole();
+                role.Name = entity.Name;
+                if (entity.SelectedMenuIds.Any())
+                {
+                    role.ListOfMenuId = string.Join(',',entity.SelectedMenuIds);
+                }
+                var result=await _roleManager.CreateAsync(role);
                 if(result.Succeeded)
                 {
                     TempData["success"] = "New Role Created";
@@ -52,24 +70,58 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Details(string id)
         {
-            IdentityRole role= await _roleManager.FindByIdAsync(id);
-            return View(role);
+            ApplicationRole role= await _roleManager.FindByIdAsync(id);
+            IEnumerable<string> result = role.ListOfMenuId.Split(',').Select(item => item.Trim());
+            RoleModel roleModel = new RoleModel()
+            {
+                Name = role.Name,
+                SelectedMenuIds = result.ToList(),
+                AvailableMenus = _unitOfWork.MenuRepo.GetAll().Select(x => new Menu()
+                {
+                    MenuId = x.MenuId,
+                    Name = x.Name
+                }).ToList(),
+            };
+            return View(roleModel);
         }
         public async Task<IActionResult> Edit(string id)
         {
-            IdentityRole role = await _roleManager.FindByIdAsync(id);
-            return View(role);
+            ApplicationRole role = await _roleManager.FindByIdAsync(id);
+            IEnumerable<string> result = new List<string>();
+            if (!string.IsNullOrEmpty(role.ListOfMenuId))
+            {
+                result = role.ListOfMenuId.Split(',').Select(item => item.Trim());
+            }
+            
+            RoleModel roleModel = new RoleModel()
+            {
+                Name = role.Name,
+                Role = role,
+                SelectedMenuIds = result.ToList(),
+                AvailableMenus = _unitOfWork.MenuRepo.GetAll().Select(x => new Menu()
+                {
+                    MenuId = x.MenuId,
+                    Name = x.Name
+                }).ToList(),
+            };
+            return View(roleModel);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(IdentityRole role)
+        public async Task<IActionResult> Edit(RoleModel roleModel)
         {
             if (ModelState.IsValid)
             {
-                role.NormalizedName = role.Name.ToUpper();
-                var result= await _roleManager.UpdateAsync(role);
+                ApplicationRole role = await _roleManager.FindByIdAsync(roleModel.Role.Id);
+                role.Name = roleModel.Name;
+                role.ListOfMenuId = "";
+                if (roleModel.SelectedMenuIds!=null)
+                {
+                    role.ListOfMenuId = string.Join(',', roleModel.SelectedMenuIds);
+                }
+                var result = await _roleManager.UpdateAsync(role);
                 if (result.Succeeded)
                 {
-                    TempData["success"] = "Role Edited Successfully";
+                    TempData["success"] = "Role Updated";
                     return RedirectToAction("Index");
                 }
                 else
@@ -80,8 +132,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                     }
                 }
             }
-            IdentityRole roleDisplay = await _roleManager.FindByIdAsync(role.Id);
-            return View(roleDisplay);
+            return View(roleModel);
         }
         public IActionResult RoleAssignment()
         {
@@ -110,7 +161,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 List<string> Roles = new List<string>();
                 foreach (var item in roleAssignmentViewModel.IdentityRoleId)
                 {
-                    IdentityRole Role = await _roleManager.FindByIdAsync(item);
+                    ApplicationRole Role = await _roleManager.FindByIdAsync(item);
                     if (Role != null)
                     {
                         Roles.Add(Role.Name);
@@ -121,7 +172,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if(result.Succeeded)
                 {
                     TempData["success"] = $"Roles Assigned to {user.Name}";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RoleAssignmentIndex");
                 }
                 else
                 {
@@ -167,7 +218,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             List<string> identityRolesIdList = new List<string>();
             foreach (var role in identityRolesList)
             {
-                IdentityRole identityrole = await _roleManager.FindByNameAsync(role);
+                ApplicationRole identityrole = await _roleManager.FindByNameAsync(role);
                 var RoleId = await _roleManager.GetRoleIdAsync(identityrole);
                 identityRolesIdList.Add(RoleId);
             }
@@ -199,7 +250,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 List<string> Roles = new List<string>();
                 foreach (var item in roleAssignmentViewModel.IdentityRoleId)
                 {
-                    IdentityRole Role = await _roleManager.FindByIdAsync(item);
+                    ApplicationRole Role = await _roleManager.FindByIdAsync(item);
                     if (Role != null)
                     {
                         Roles.Add(Role.Name);
@@ -244,7 +295,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                             {
                                 scope.Complete();
                                 TempData["success"] = $"Roles Assigned to {user.Name}";
-                                return RedirectToAction("Index");
+                                return RedirectToAction("RoleAssignmentIndex");
                             }
                             else
                             {
@@ -300,7 +351,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Delete(string id)
         {
-            IdentityRole role = await _roleManager.FindByIdAsync(id);
+            ApplicationRole role = await _roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });

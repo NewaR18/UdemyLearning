@@ -1,4 +1,4 @@
-﻿@model IdentityRole
+﻿@model RoleModel
 <h2>Create Details</h2>
 <form>
     <div asp-validation-summary="All"></div>
@@ -6,6 +6,21 @@
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" type="text" class="form-control" readonly/>
         <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <h4>Roles</h4>
+    <div class="row mb-2">
+        @for (int i = 0; i < Model.AvailableMenus.Count; i++)
+        {
+            var menuId = Model.AvailableMenus[i].MenuId;
+            var isChecked = Model.SelectedMenuIds != null && Model.SelectedMenuIds.Contains(menuId.ToString());
+
+            <div class="col-3 mb-2">
+                <label>
+                    <input type="checkbox" name="SelectedMenuIds" value="@menuId" disabled @(isChecked ? "checked" : "") />
+                    @Model.AvailableMenus[i].Name
+                </label>
+            </div>
+        }
     </div>
 </form>
 <a class="bg-primary text-light p-2 text-decoration-none mt-3" asp-controller="Role" asp-action="Index">Back To Index</a>

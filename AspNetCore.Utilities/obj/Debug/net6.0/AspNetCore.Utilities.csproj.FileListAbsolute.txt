@@ -10,3 +10,8 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\Asp
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\refint\AspNetCore.Utilities.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\AspNetCore.Utilities.pdb
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\ref\AspNetCore.Utilities.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\bin\Debug\net6.0\AspNetCore.Models.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\bin\Debug\net6.0\AspNetCore.Models.pdb
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\AspNetCore.Utilities.csproj.CopyComplete
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\bin\Debug\net6.0\AspNetCore.DataAccess.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\bin\Debug\net6.0\AspNetCore.DataAccess.pdb

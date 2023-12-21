@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IdentityRole>
+﻿@model IEnumerable<ApplicationRole>
 
 <h2>Roles</h2>
 
@@ -12,6 +12,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Menus</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,9 @@
                 </td>
                 <td>
                     @obj.Name
+                </td>
+                <td>
+                    @obj.ListOfMenuId
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@obj.Id"><i class="bi bi-pen"></i></a> || <a asp-action="Details" asp-route-id="@obj.Id"><i class="bi bi-eye"></i></a> || <a onclick="Delete('/Admin/Role/Delete/@obj.Id')"><i class="bi bi-trash"></i></a>

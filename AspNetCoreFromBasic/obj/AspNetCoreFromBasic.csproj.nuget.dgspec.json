@@ -201,7 +201,14 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.DataAccess\\AspNetCore.DataAccess.csproj": {
+                "projectPath": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.DataAccess\\AspNetCore.DataAccess.csproj"
+              },
+              "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.Models\\AspNetCore.Models.csproj": {
+                "projectPath": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.Models\\AspNetCore.Models.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -217,6 +224,10 @@
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[6.0.25, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
             }
           },
           "imports": [

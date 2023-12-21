@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,5 +12,11 @@ namespace AspNetCore.Models.ViewModel
     {
         [Required]
         public string Name { get; set; }
+        [ValidateNever]
+        public ApplicationRole Role { get; set; }
+        [ValidateNever]
+        public List<string> SelectedMenuIds { get; set; }
+        [ValidateNever]
+        public List<Menu> AvailableMenus { get; set; }
     }
 }

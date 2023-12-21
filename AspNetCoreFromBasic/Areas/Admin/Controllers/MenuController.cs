@@ -1,5 +1,6 @@
 ﻿using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
@@ -7,9 +8,13 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
     public class MenuController : Controller
     {
         private readonly IUnitOfWork _repo;
-        public MenuController(IUnitOfWork unitOfWork)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        public MenuController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             _repo = unitOfWork;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         public IActionResult Index()
         {
@@ -54,30 +59,32 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             TempData["success"] = "Item Updated Successfully";
             return RedirectToAction("Index");
         }
-        //#region API
-        //public IActionResult Delete(int id)
-        //{
-        //    Product product = _repo.ProductRepo.GetFirstOrDefault(x => x.MenuId == id);
-        //    if (product == null)
-        //    {
-        //        if (id == 0)
-        //        {
-        //            return Json(new { success = false, message = "Error" });
-
-        //        }
-        //        else
-        //        {
-        //            Category entity = _repo.CategoryRepo.GetFirstOrDefault(x => x.Id == id);
-        //            _repo.CategoryRepo.Remove(entity);
-        //            _repo.Save();
-        //            return Json(new { success = true, message = "Item Deleted Successfully" });
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return Json(new { success = false, message = "Following Covertype is associated with Product" });
-        //    }
-        //}
-        //#endregion
+        #region API
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == 0)
+            {
+                return Json(new { success = false, message = "Error" });
+            }
+            else
+            {
+                var roles = _roleManager.Roles.ToList().Where(x => x.ListOfMenuId.Split(',').ToList().Contains(id.ToString()));
+                foreach(var role in roles)
+                {
+                    List<string> roleMenus = role.ListOfMenuId.Split(',').ToList();
+                    if (roleMenus.Exists(x => x.Equals(id.ToString())))
+                    {
+                        roleMenus.Remove(id.ToString());
+                    }
+                    role.ListOfMenuId = string.Join(",", roleMenus);
+                    var result = await _roleManager.UpdateAsync(role);
+                }
+                Menu entityMenu = _repo.MenuRepo.GetFirstOrDefault(x => x.MenuId.Equals(id));
+                _repo.MenuRepo.Remove(entityMenu);
+                _repo.Save();
+                return Json(new { success = true, message = "Menu Deleted Successfully" });
+            }
+        }
+        #endregion
     }
 }
