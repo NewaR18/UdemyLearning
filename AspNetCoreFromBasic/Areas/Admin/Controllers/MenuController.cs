@@ -1,10 +1,12 @@
 ﻿using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
+    [Authorize]
     public class MenuController : Controller
     {
         private readonly IUnitOfWork _repo;

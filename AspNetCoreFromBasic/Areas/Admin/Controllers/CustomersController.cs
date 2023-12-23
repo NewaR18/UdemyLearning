@@ -2,12 +2,14 @@
 using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
 using AspNetCore.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

@@ -31,6 +31,10 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
             };
             return View(cartObj);
         }
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

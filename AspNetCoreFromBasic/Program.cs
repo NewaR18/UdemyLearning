@@ -22,6 +22,7 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => option
     .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddSingleton<IEmailSender,EmailSender>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<AuthorizationMiddleware>();
 builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();

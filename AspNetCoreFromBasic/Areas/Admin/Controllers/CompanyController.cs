@@ -1,10 +1,12 @@
 ﻿using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CompanyController : Controller
     {
         private readonly IUnitOfWork _repo;

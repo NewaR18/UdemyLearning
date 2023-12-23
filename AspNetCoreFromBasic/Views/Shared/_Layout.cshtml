@@ -1,4 +1,47 @@
-﻿@inject SignInManager<ApplicationUser> signInManager
+﻿@using AspNetCore.DataAccess.Repository.IRepository;
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> _userManager
+@inject RoleManager<ApplicationRole> _roleManager
+@inject IUnitOfWork _repo
+@{
+    var user = await _userManager.GetUserAsync(User);
+
+    var userRoleNames = await _userManager.GetRolesAsync(user);
+    IEnumerable<string> menusNames = new List<string>();
+    List<string> Menus = new List<string>();
+    if (user != null)
+    {
+        List<string> menuIds = new List<string>();
+        //Find List of MenuId By User
+        foreach (var userRoleName in userRoleNames)
+        {
+            ApplicationRole applicationRole = await _roleManager.FindByNameAsync(userRoleName);
+            if (applicationRole.ListOfMenuId != null)
+            {
+                menuIds.Add(applicationRole.ListOfMenuId);
+            }
+        }
+        string menuIdsCombined = string.Join(",", menuIds);
+        IEnumerable<string> menuIdsCombinedEnumerable = menuIdsCombined.Split(',');
+        IEnumerable<string> menuIdsCombinedDistinct = menuIdsCombinedEnumerable.Distinct();
+        menusNames = _repo.MenuRepo.GetAll().Where(menu => menuIdsCombinedDistinct.Any(x => x.Equals(menu.MenuId.ToString()))).Select(menu => menu.Name);
+        if(menusNames.Count() == 0)
+        {
+            Menus.Add("Home");
+            Menus.Add("Account");
+            menusNames = Menus;
+        }
+    }
+    else
+    {
+        Menus.Add("Home");
+        Menus.Add("Account");
+        menusNames = Menus;
+    }
+
+    //var controllerName = context.GetRouteValue("controller")?.ToString();
+
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,44 +68,77 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                User
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Customers" asp-action="Index">Customers</a>
-                                </li>
-                                <li>
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Role" asp-action="Index">Role</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Entities
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Library" asp-action="Index">Library</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="CoverType" asp-action="Index">CoverType</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Menu" asp-action="Index">Menu</a>
-                        </li>
+                        @if (menusNames.Any(x => x.Equals("Customers") || x.Equals("Role")))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    User
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @if (menusNames.Any(x => x.Equals("Customers")))
+                                    {
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Customers" asp-action="Index">Customers</a>
+                                        </li>
+                                    }
+                                    @if (menusNames.Any(x => x.Equals("Role")))
+                                    {
+                                        <li>
+                                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Role" asp-action="Index">Role</a>
+                                        </li>
+                                    }
+                                    <li>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (menusNames.Any(x => x.Equals("Library") || x.Equals("CoverType") || x.Equals("Category") || x.Equals("Product") || x.Equals("Company")))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Entities
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @if (menusNames.Any(x => x.Equals("Library")))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Library" asp-action="Index">Library</a>
+                                        </li>
+                                    }
+                                    @if (menusNames.Any(x => x.Equals("CoverType")))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="CoverType" asp-action="Index">CoverType</a>
+                                        </li>
+                                    }
+                                    @if (menusNames.Any(x => x.Equals("Category")))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                        </li>
+                                    }
+                                    @if (menusNames.Any(x => x.Equals("Product")))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                                        </li>
+                                    }
+                                    @if (menusNames.Any(x => x.Equals("Company")))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        @if (menusNames.Any(x => x.Equals("Menu")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Menu" asp-action="Index">Menu</a>
+                            </li>
+                        }
+                        
                     </ul>
                     @*<partial name="_LoginPartial" />*@
                     <ul class="navbar-nav">

@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\images\\product\\c2ca7778-f198-4f8a-af8a-db325ad5731a.jpg"
     },
     {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\11c1731f-7cc9-48aa-92c5-25c1a26b3f6a.jpg",
+      "PackagePath": "staticwebassets\\images\\users\\11c1731f-7cc9-48aa-92c5-25c1a26b3f6a.jpg"
+    },
+    {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\4fa75ac6-74f5-4806-a22a-4c430d129d28.jpg",
       "PackagePath": "staticwebassets\\images\\users\\4fa75ac6-74f5-4806-a22a-4c430d129d28.jpg"
     },
@@ -55,6 +59,10 @@
     {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\729bdb92-e940-4178-b366-d034f092c844.jpg",
       "PackagePath": "staticwebassets\\images\\users\\729bdb92-e940-4178-b366-d034f092c844.jpg"
+    },
+    {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\9e384122-a7de-453f-82cd-638372d608ca.jpg",
+      "PackagePath": "staticwebassets\\images\\users\\9e384122-a7de-453f-82cd-638372d608ca.jpg"
     },
     {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\images\\users\\be551c6b-9511-4255-ae6c-3df6501e590a.jpg",

@@ -12,20 +12,25 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace AspNetCore.Utilities.Middleware
 {
-    public class AuthorizationMiddleware
+    public class AuthorizationMiddleware : IMiddleware
     {
         
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly RequestDelegate _next;
-        public AuthorizationMiddleware(RequestDelegate next, IHttpContextAccessor httpContextAccessor)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly IUnitOfWork _repo;
+        public AuthorizationMiddleware(IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IUnitOfWork repo)
         {
-            _next = next;
             _httpContextAccessor = httpContextAccessor;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _repo = repo;
         }
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             ClaimsPrincipal user = _httpContextAccessor.HttpContext?.User!;
             if (user != null)
@@ -33,68 +38,66 @@ namespace AspNetCore.Utilities.Middleware
                 IEnumerable<Claim> roleClaims = user.FindAll(ClaimTypes.Role);
                 if (roleClaims.Any())
                 {
-                    IEnumerable<string> userRoles = roleClaims.Select(c => c.Value);
-                    string userRolesInString = string.Join(',', userRoles);
-                    List<string> menuNames = new List<string>();
-                    using (SqlCommand cmd = new SqlCommand())
+                    //Find Role Name By User
+                    IEnumerable<string> userRoleNames = roleClaims.Select(c => c.Value);
+                    List<string> menuIds = new List<string>();
+                    //Find List of MenuId By User
+                    foreach (var userRoleName in userRoleNames)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "FindMenuIds";
-                        using (SqlConnection conn1 = new SqlConnection("server=192.168.20.31; database=udemy; uid=sudip; pwd=infodev; Trusted_Connection=true; TrustServerCertificate=True"))
+                        ApplicationRole applicationRole = await _roleManager.FindByNameAsync(userRoleName);
+                        if(applicationRole.ListOfMenuId != null)
                         {
-                            cmd.Connection = conn1;
-                            conn1.Open();
-                            cmd.CommandTimeout = 30;
-                            cmd.Parameters.AddWithValue("@roles", userRolesInString);
-                            using (SqlDataReader sd = cmd.ExecuteReader())
-                            {
-                                if (sd.HasRows)
-                                {
-                                    while (sd.Read())
-                                    {
-                                        string menuName = sd.GetString(0);
-                                        menuNames.Add(menuName);
-                                    }
-                                }
-                            }
+                            menuIds.Add(applicationRole.ListOfMenuId);
                         }
                     }
+                    string menuIdsCombined = string.Join(",", menuIds);
+                    IEnumerable<string> menuIdsCombinedEnumerable = menuIdsCombined.Split(',');
+                    IEnumerable<string> menuIdsCombinedDistinct = menuIdsCombinedEnumerable.Distinct();
+                    IEnumerable<string> menusNames = _repo.MenuRepo.GetAll().Where(menu => menuIdsCombinedDistinct.Any(x=>x.Equals(menu.MenuId.ToString()))).Select(menu => menu.Name);
                     var controllerName = context.GetRouteValue("controller")?.ToString();
-                    if (menuNames.Exists(x => x.Equals(controllerName)) || controllerName == "Home" || controllerName == "Account")
+                    if (menusNames.Any(x => x.Equals(controllerName)) || IsAccessibleForAnyUser(controllerName))
                     {
-                        await _next(context);
+                        await next(context);
                     }
                     else
                     {
-                        context.Response.Redirect("/Customer/Home/Index");
+                        context.Response.Redirect("/Customer/Home/AccessDenied");
                     }
                 }
                 else
                 {
                     var controllerName = context.GetRouteValue("controller")?.ToString();
-                    if(controllerName == "Home" || controllerName == "Account")
+                    if(IsAccessibleForAnyUser(controllerName))
                     {
-                        await _next(context);
+                        await next(context);
                     }
                     else
                     {
-                        context.Response.Redirect("/Customer/Home/Index");
+                        context.Response.Redirect("/Customer/Home/AccessDenied");
                     }
                 }
             }
             else
             {
                 var controllerName = context.GetRouteValue("controller")?.ToString();
-                if (controllerName == "Home" || controllerName == "Account")
+                if (IsAccessibleForAnyUser(controllerName))
                 {
-                    await _next(context);
+                    await next(context);
                 }
                 else
                 {
-                    context.Response.Redirect("/Customer/Home/Index");
+                    context.Response.Redirect("/Customer/Home/AccessDenied");
                 }
             }
 
+        }
+        public bool IsAccessibleForAnyUser(string controllerName)
+        {
+            if (controllerName == "Home" || controllerName == "Account")
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

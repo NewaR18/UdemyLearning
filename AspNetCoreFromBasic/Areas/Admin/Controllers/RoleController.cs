@@ -3,6 +3,7 @@ using AspNetCore.DataAccess.Repository;
 using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
 using AspNetCore.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using System.Transactions;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
+    [Authorize]
     public class RoleController : Controller
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
