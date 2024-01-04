@@ -64,6 +64,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxMb2dpbldpdGhSZWNvdmVyeUNvZGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Areas/Admin/Views/Account/PaymentGateway.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxQYXltZW50R2F0ZXdheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Areas/Admin/Views/Account/PaymentGatewayEsewa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxQYXltZW50R2F0ZXdheUVzZXdhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Areas/Admin/Views/Account/PaymentGatewayKhalti.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxQYXltZW50R2F0ZXdheUtoYWx0aS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Areas/Admin/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -262,6 +274,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Areas/Customer/Views/Home/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Areas/Customer/Views/Home/BuyNow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcSG9tZVxCdXlOb3cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Codes/Chapter 1 amd 2/UdemyLearning/AspNetCoreFromBasic/Areas/Customer/Views/Home/Details.cshtml]

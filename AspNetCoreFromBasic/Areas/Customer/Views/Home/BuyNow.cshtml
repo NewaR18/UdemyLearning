@@ -1,0 +1,71 @@
+﻿@model ShoppingCart
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row d-flex justify-content-center pb-5">
+                    <div class="col-md-7 col-xl-5 mb-4 mb-md-0">
+                        <div class="py-4 d-flex flex-row">
+                            <h5><span class="far fa-check-square pe-2"></span><b>BUY NOW</b> |</h5>
+                            <span class="ps-2">Pay</span>
+                        </div>
+                        <h4 class="text-success">Nrs @Model.Product.ListPrice</h4>
+                        <h4>@Model.Product.Title</h4>
+                        <div class="d-flex pt-2">
+                            <p>@Html.Raw(@Model.Product.Description)</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="py-4 d-flex justify-content-end">
+                            <h6><a asp-action="Details" asp-route-id="@Model.Product.Id">Cancel and return to website</a></h6>
+                        </div>
+                        <div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
+                            <div class="p-2 me-3">
+                                <h4>Order Recap</h4>
+                            </div>
+                            <div class="p-2 d-flex">
+                                <div class="col-8">Contracted Price</div>
+                                <div class="ms-auto">NRS @Model.Product.ListPrice</div>
+                            </div>
+                            <div class="p-2 d-flex">
+                                <div class="col-8">Units</div>
+                                <div class="ms-auto">@Model.Count</div>
+                            </div>
+                            <div class="border-top px-2 mx-2"></div>
+                            <div class="p-2 d-flex">
+                                <div class="col-8">Total</div>
+                                <div class="ms-auto">NRS @(Model.Count * Model.Product.ListPrice)</div>
+                            </div>
+                            <div class="p-2 d-flex">
+                                <div class="col-8">Discount Amount</div>
+                                <div class="ms-auto">NRS @(Model.Count * (Model.Product.ListPrice - Model.Product.Price))</div>
+                            </div>
+                            <div class="border-top px-2 mx-2"></div>
+                            <div class="border-top px-2 mx-2"></div>
+                            <div class="p-2 d-flex pt-3">
+                                <div class="col-8"><b>Total</b></div>
+                                <div class="ms-auto"><b class="text-success">NRS @(Model.Count * Model.Product.Price)</b></div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="pt-2">
+                            <div class="d-flex flex-row pb-3">
+                                <div class="rounded border d-flex w-100 p-1 align-items-center">
+                                    <a class="btn form-control text-white" style="height:50px; background-color:#297E10!important" asp-area="Admin" asp-controller="Account" asp-action="PaymentGatewayEsewa" asp-route-id="@Model.Product.Id" asp-route-count="@Model.Count">
+                                        E-sewa
+                                        </a>
+                                </div>
+                                <div class="rounded border d-flex w-100 p-1 align-items-center">
+                                    <a class="btn form-control text-white" style="height:50px; background-color:#350457!important" asp-area="Admin" asp-controller="Account" asp-action="PaymentGatewayKhalti" asp-route-id="@Model.Product.Id" asp-route-count="@Model.Count">
+                                        Khalti
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

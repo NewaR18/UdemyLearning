@@ -22,6 +22,8 @@ namespace AspNetCore.DataAccess.Repository
             ProductRepo = new ProductRepo(_context);
             CompanyRepo = new CompanyRepo(_context);
             MenuRepo = new MenuRepo(_context);
+            PaymentKhaltiRepo = new PaymentKhaltiRepo(_context);
+            EsewaPaymentRepo = new EsewaPaymentRepo(_context);
         }
         public ILibraryRepo LibraryRepo { get; private set; }
         public ICoverTypeRepo CoverTypeRepo { get; private set; }
@@ -29,6 +31,8 @@ namespace AspNetCore.DataAccess.Repository
         public IProductRepo ProductRepo { get; private set; }  
         public ICompanyRepo CompanyRepo { get; private set; }
         public IMenuRepo MenuRepo { get; private set; }
+        public IPaymentKhaltiRepo PaymentKhaltiRepo { get; private set; }
+        public IEsewaPaymentRepo EsewaPaymentRepo { get; private set; }
         public void Save()
         {
             _context.SaveChanges();

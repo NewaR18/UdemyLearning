@@ -31,6 +31,15 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
             };
             return View(cartObj);
         }
+        public IActionResult BuyNow(int id, int count) 
+        {
+            ShoppingCart cartObj = new()
+            {
+                Product = _repo.ProductRepo.GetFirstOrDefault(x => x.Id == id, IncludeProperties: "Category,CoverType"),
+                Count = count
+            };
+            return View(cartObj);
+        }
         public IActionResult AccessDenied()
         {
             return View();

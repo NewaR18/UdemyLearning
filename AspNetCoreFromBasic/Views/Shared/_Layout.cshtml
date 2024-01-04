@@ -5,12 +5,11 @@
 @inject IUnitOfWork _repo
 @{
     var user = await _userManager.GetUserAsync(User);
-
-    var userRoleNames = await _userManager.GetRolesAsync(user);
     IEnumerable<string> menusNames = new List<string>();
     List<string> Menus = new List<string>();
     if (user != null)
     {
+        var userRoleNames = await _userManager.GetRolesAsync(user);
         List<string> menuIds = new List<string>();
         //Find List of MenuId By User
         foreach (var userRoleName in userRoleNames)

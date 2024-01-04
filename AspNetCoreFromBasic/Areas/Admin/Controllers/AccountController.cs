@@ -12,6 +12,12 @@ using System.Globalization;
 using System.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using AspNetCore.DataAccess.Repository.IRepository;
+using Newtonsoft.Json;
+using Microsoft.DotNet.MSIdentity.Shared;
+using AspNetCore.Utilities.Security;
+using System.Transactions;
+using System.Security.Cryptography;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
@@ -23,18 +29,21 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly UrlEncoder _urlEncoder;
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
+        private readonly IUnitOfWork _repo;
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             IWebHostEnvironment webHostEnvironment,
-            UrlEncoder urlEncoder)
+            UrlEncoder urlEncoder,
+            IUnitOfWork repo)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _emailSender = emailSender;
             _webHostEnvironment = webHostEnvironment;
             _urlEncoder = urlEncoder;
+            _repo = repo;
         }
         public IActionResult Index()
         {
@@ -839,6 +848,110 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             TempData["success"] = "Thank you for confirming your email change.";
             return RedirectToAction("Profile");
         }
+        public IActionResult PaymentGatewayEsewa(int id,int count)
+        {
+            string userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                TempData["error"] = "Login again to continue";
+                return RedirectToAction("Index", "Home", new { area = "Customer" });
+            }
+            string productId = id.ToString();
+            string countOfProduct= count.ToString();
+            string dateTime = DateTime.Now.ToString("s");
+            string Pid = string.Concat(userId,'_',productId,'_',countOfProduct,'_',dateTime);
+            BuyNowViewModel buyNowViewModel = new BuyNowViewModel()
+            {
+                ProductId = Pid,
+                Count = count
+            };
+            return View(buyNowViewModel);
+        }
+        public IActionResult PaymentSuccess(string data)
+        {
+            string decrypedResponse = SHAConfiguration.DecodeHMACSHA256(data);
+            EsewaSuccessResponse esewaSuccessReponse = JsonConvert.DeserializeObject<EsewaSuccessResponse>(decrypedResponse)!;
+            EsewaPayment esewaPayment = _repo.EsewaPaymentRepo.GetFirstOrDefault(x => x.TransactionId == esewaSuccessReponse.transaction_uuid);
+            esewaPayment.TransactionCode = esewaSuccessReponse.transaction_code;
+            esewaPayment.Status = esewaSuccessReponse.status;
+            _repo.EsewaPaymentRepo.Update(esewaPayment);
+            _repo.Save();
+            TempData["success"] = "Payment Successful With Esewa";
+            return RedirectToAction("Profile");
+        }
+        public IActionResult PaymentFailure()
+        {
+            TempData["error"] = "Payment Failure";
+            return RedirectToAction("Profile");
+        }
+        public async Task<IActionResult> PaymentGatewayKhalti(int id,int count)
+        {
+            var url = "https://a.khalti.com/api/v2/epayment/initiate/";
+            string userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                TempData["error"] = "Login again to continue";
+                return RedirectToAction("Index", "Home", new { area = "Customer" });
+            }
+            string productId = id.ToString();
+            string countOfProduct = count.ToString();
+            string dateTime = DateTime.Now.ToString("s");
+            string Pid = string.Concat(userId, '_', productId, '_', countOfProduct, '_', dateTime);
+            Product product= _repo.ProductRepo.GetFirstOrDefault(s => s.Id == Convert.ToInt32(productId));
+            var payload = new
+            {
+                return_url = "https://localhost:7139/Admin/Account/PaymentGatewayKhaltiResponse",
+                website_url = "https://localhost:7139/",
+                amount = Convert.ToString(product.Price*100* Convert.ToInt32(countOfProduct)),
+                purchase_order_id = Pid,
+                purchase_order_name = product.Title
+            };
+
+            var jsonPayload = JsonConvert.SerializeObject(payload);
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", "Key live_secret_key_68791341fdd94846a146f0457ff7b455");
+
+            var response = await client.PostAsync(url, content);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                SuccessResponseKhalti successResponseKhalti = JsonConvert.DeserializeObject<SuccessResponseKhalti>(responseContent)!;
+                if (successResponseKhalti != null)
+                {
+                    PaymentKhalti khaltiPayment = new PaymentKhalti()
+                    {
+                        Pidx = successResponseKhalti.pidx,
+                        Amount = product.Price,
+                        Status = "INITIATED"
+                    };
+                    _repo.PaymentKhaltiRepo.Add(khaltiPayment);
+                    _repo.Save();
+                    Response.Redirect(successResponseKhalti.payment_url);
+                    return View();
+                }
+                TempData["error"] = "Error occured with Payment by Khalti";
+                return RedirectToAction("Index", "Home", new { area = "Customer" });
+            }
+            TempData["error"] = "Error occured with Payment by Khalti";
+            return RedirectToAction("Index", "Home", new { area = "Customer" });
+
+        }
+        public IActionResult PaymentGatewayKhaltiResponse(PaymentKhaltiResponse khaltiPaymentResponse)
+        {
+            PaymentKhalti paymentKhalti = _repo.PaymentKhaltiRepo.GetFirstOrDefault(x => x.Pidx == khaltiPaymentResponse.pidx);
+            paymentKhalti.Amount = khaltiPaymentResponse.amount/100;
+            paymentKhalti.Status = "COMPLETED";
+            paymentKhalti.MobileNo = khaltiPaymentResponse.mobile;
+            paymentKhalti.TxnId = khaltiPaymentResponse.txnId;
+            paymentKhalti.PurchaseOrderId = khaltiPaymentResponse.purchase_order_id;
+            paymentKhalti.PurchaseOrderName = khaltiPaymentResponse.purchase_order_name;
+            _repo.PaymentKhaltiRepo.Update(paymentKhalti);
+            _repo.Save();
+            TempData["success"] = "Payment Successful with Khalti";
+            return RedirectToAction("Profile");
+        }
         #endregion
 
         #region Functions
@@ -883,6 +996,62 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 _urlEncoder.Encode("Microsoft.AspNetCore.Identity.UI"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
+        }
+        [HttpGet]
+        public JsonResult GetPaymentDetails(string pid)
+        {
+            string[] parts = pid.Split('_');
+            string uid = parts[0];
+            string productId= parts[1];
+            int count = Convert.ToInt32(parts[2]);
+            string time = parts[2];
+            //Lets put product count in pid
+            string Amount = (_repo.ProductRepo.GetFirstOrDefault(s => s.Id == Convert.ToInt32(productId)).Price * count).ToString("0.00");
+            var successURL = Url.Action(
+                                    "PaymentSuccess",
+                                    "Account",
+                                    new { area = "Admin" },
+                                    Request.Scheme
+                                    );
+            var failureURL = Url.Action(
+                                    "PaymentFailure",
+                                    "Account",
+                                    new { area = "Admin" },
+                                    Request.Scheme
+                                    );
+            string ProductCode = "EPAYTEST";
+            var message = "total_amount=" + Amount + ",transaction_uuid=" + pid + ",product_code=" + ProductCode;
+            PaymentGatewayParam paymentGatewayParam = new PaymentGatewayParam()
+            {
+                Path = "https://rc-epay.esewa.com.np/api/epay/main/v2/form",
+                Params = new PaymentGatewayParamInner()
+                {
+                    amount = Amount,
+                    tax_amount = "0",
+                    total_amount = Amount,
+                    transaction_uuid = pid,
+                    product_code = ProductCode,
+                    product_service_charge = "0",
+                    product_delivery_charge = "0",
+                    success_url = successURL,
+                    failure_url = failureURL,
+                    signed_field_names = "total_amount,transaction_uuid,product_code",
+                    signature = SHAConfiguration.ComputeHMACSHA256(message, "8gBm/:&EnhH.1/q")
+                }
+            };
+            EsewaPayment esewaPayment = new EsewaPayment()
+            {
+                UserId = uid,
+                TransactionId = pid,
+                Status = "Initiated",
+                TotalAmount = Convert.ToDecimal(Amount),
+                ProductCode = ProductCode,
+                ProductId = Convert.ToInt32(productId),
+                Count = count,
+            };
+            _repo.EsewaPaymentRepo.Add(esewaPayment);
+            _repo.Save();
+            return Json(paymentGatewayParam);
         }
         #endregion
     }
