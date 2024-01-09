@@ -1,16 +1,10 @@
 
 using AspNetCore.DataAccess.Data;
-using AspNetCore.Utilities.EmailConfigurations;
-using AspNetCore.DataAccess.Repository;
-using AspNetCore.DataAccess.Repository.IRepository;
-using AspNetCore.Repository;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using AspNetCore.Models;
 using AspNetCore.Utilities.Middleware;
-using Microsoft.AspNetCore.Builder;
+using AspNetCore.Utilities.Modules;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +14,7 @@ var conStr = builder.Configuration.GetConnectionString("Myconnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conStr));
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true).AddDefaultTokenProviders()
     .AddEntityFrameworkStores<AppDbContext>();
-builder.Services.AddSingleton<IEmailSender,EmailSender>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddTransient<AuthorizationMiddleware>();
-builder.Services.AddScoped<AppDbContext>();
+builder.Services.RegisterModule();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
@@ -55,6 +46,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
+app.RunWithProgramStart();
 
 app.UseMiddleware<AuthorizationMiddleware>();
 app.MapControllerRoute(

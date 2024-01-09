@@ -18,6 +18,7 @@ using Microsoft.DotNet.MSIdentity.Shared;
 using AspNetCore.Utilities.Security;
 using System.Transactions;
 using System.Security.Cryptography;
+using AspNetCoreFromBasic.Areas.Customer.Controllers;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
@@ -67,11 +68,11 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     TempData["success"] = "Logged In Successfully";
-                    return RedirectToAction("Index", "Home", new {area="Customer"});
+                    return RedirectToAction(nameof(HomeController.Index), "Home", new {area="Customer"});
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToAction("LoginWith2fa", new { RememberMe = loginModel.Input.RememberMe });
+                    return RedirectToAction(nameof(LoginWith2fa), new { RememberMe = loginModel.Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
@@ -90,7 +91,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"]="Unable to load two-factor authentication user.";
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
             LoginWith2faModel loginWith2FaModel = new LoginWith2faModel()
             {
@@ -115,7 +116,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (result.Succeeded)
             {
                 TempData["success"] = "Logged In Successfully";
-                return RedirectToAction("Index", "Home", new { area = "Customer" });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
             }
             else if (result.IsLockedOut)
             {
@@ -153,13 +154,13 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 {
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToAction("RegisterConfirmation", new { email = registerModel.Input.Email });
+                        return RedirectToAction(nameof(RegisterConfirmation), new { email = registerModel.Input.Email });
                     }
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: true);
                         TempData["success"] = "User Signed In Successdully";
-                        return RedirectToAction("Index", "Home", new { area = "Customer" });   
+                        return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });   
                     }
                 }
                 foreach (var error in result.Errors)
@@ -193,13 +194,13 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (userId == null || code == null)
             {
                 TempData["error"] = "Email could not be verified";
-                return RedirectToAction("Index", "Home", new { area = "Customer" });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 TempData["error"] = "User not found";
-                return RedirectToAction("Index", "Home", new { area = "Customer" });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
             }
             var result=await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
@@ -211,7 +212,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 TempData["error"] = "Email Confirmation failure";
             }
             await _signInManager.SignInAsync(user, isPersistent: true);
-            return RedirectToAction("Index", "Home", new { area = "Customer" });
+            return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
         }
         private ApplicationUser CreateUser()
         {
@@ -230,7 +231,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
         {
             await _signInManager.SignOutAsync();
             TempData["success"] = "User logged out successully";
-            return RedirectToAction("Index", "Home", new { area = "Customer" });
+            return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
         }
         public IActionResult ForgetPassword()
         {
@@ -259,7 +260,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                     forgetPassword.Email,
                     "Reset Password",
                     $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(EmailConfirmationUrl)}'>clicking here</a>.");
-                return RedirectToAction("ForgetPasswordConfirmation");
+                return RedirectToAction(nameof(ForgetPasswordConfirmation));
             }
             return View();
         }
@@ -293,12 +294,12 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Could not reset password";
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation");
+                return RedirectToAction(nameof(ResetPasswordConfirmation));
             }
             foreach (var error in result.Errors)
             {
@@ -322,23 +323,23 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (remoteError != null)
             {
                 TempData["error"] = $"Error from external provider: {remoteError}";
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
                 TempData["error"] = "Error loading external login information.";
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
                 TempData["success"] = "Logged In using Google";
-                return RedirectToAction("Index", "Home", new {area="Customer"});
+                return RedirectToAction(nameof(HomeController.Index), "Home", new {area="Customer"});
             }
             if (result.IsLockedOut)
             {
-                return RedirectToPage("./Lockout");
+                return RedirectToAction("Lockout");
             }
             else
             {
@@ -352,7 +353,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                         Name = info.Principal.FindFirstValue(ClaimTypes.Name)
                     };
                 }
-                return View("ExternalLogin", externalLoginModel);
+                return View(nameof(ExternalLogin), externalLoginModel);
             }
         }
         public async Task<IActionResult> ConfirmationExternalAuthentication(ExternalLoginModel externalLoginModel)
@@ -361,7 +362,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (info == null)
             {
                 TempData["error"] = "Error loading external login information during confirmation.";
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
 
             if (ModelState.IsValid)
@@ -381,7 +382,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                         _identityuser.EmailConfirmed = true;
                         await _userManager.UpdateAsync(_identityuser);
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
-                        return RedirectToAction("Index", "Home", new { area = "Customer" });
+                        return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
                     }
                 }
                 foreach (var error in result.Errors)
@@ -389,7 +390,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-            return View("ExternalLogin", externalLoginModel);
+            return View(nameof(ExternalLogin), externalLoginModel);
         }
 
         #region Profile
@@ -444,7 +445,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     TempData["success"] = "User Updated Successfully";
-                    return RedirectToAction("Profile");
+                    return RedirectToAction(nameof(Profile));
                 }
                 else
                 {
@@ -462,12 +463,12 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to set password"; 
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var hasPassword = await _userManager.HasPasswordAsync(user);
             if (hasPassword)
             {
-                return RedirectToAction("ChangePassword");
+                return RedirectToAction(nameof(ChangePassword));
             }
             return View();
         }
@@ -482,7 +483,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to set password";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var addPasswordResult = await _userManager.AddPasswordAsync(user, setPassword.NewPassword);
             if (!addPasswordResult.Succeeded)
@@ -495,7 +496,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             }
             await _signInManager.RefreshSignInAsync(user);
             TempData["success"] = "Your Password has been set";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         public async Task<IActionResult> ChangePassword()
         {
@@ -503,12 +504,12 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to set password";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var hasPassword = await _userManager.HasPasswordAsync(user);
             if (!hasPassword)
             {
-                return RedirectToAction("SetPassword");
+                return RedirectToAction(nameof(SetPassword));
             }
             return View();
         }
@@ -523,7 +524,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to change password";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, changePassword.OldPassword, changePassword.NewPassword);
             if (!changePasswordResult.Succeeded)
@@ -536,7 +537,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             }
             await _signInManager.RefreshSignInAsync(user);
             TempData["success"] = "Your Password has been changed";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         public async Task<IActionResult> TwoFactorAuthentication()
         {
@@ -544,7 +545,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to access Two Factor Authentication";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             TwoFactorAuthenticationModel twoFactorAuthenticationModel = new TwoFactorAuthenticationModel()
             {
@@ -562,11 +563,11 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to access Two Factor Authentication";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             await _signInManager.ForgetTwoFactorClientAsync();
             TempData["success"] = "The current browser has been forgotten. When you login again from this browser you will be prompted for your 2fa code.";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         public async Task<IActionResult> EnableAuthenticator()
         {
@@ -574,7 +575,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to enable Authenticator";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             EnableAuthenticatorModel enableAuthenticator=await LoadSharedKeyAndQrCodeUriAsync(user);
             return View(enableAuthenticator);
@@ -586,7 +587,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to enable Authenticator";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             if (!ModelState.IsValid)
             {
@@ -619,18 +620,18 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 {
                     RecoveryCodes = enableAuthenticator.RecoveryCodes
                 };
-                return RedirectToAction("ShowRecoveryCodes", showRecoveryCodesModel);
+                return RedirectToAction(nameof(ShowRecoveryCodes), showRecoveryCodesModel);
             }
             else
             {
-                return RedirectToAction("TwoFactorAuthentication");
+                return RedirectToAction(nameof(TwoFactorAuthentication));
             }
         }
         public async Task<IActionResult> ShowRecoveryCodes(string[] recoveryCodes)
         {
             if (recoveryCodes == null)
             {
-                return RedirectToAction("TwoFactorAuthentication");
+                return RedirectToAction(nameof(TwoFactorAuthentication));
             }
 
             ShowRecoveryCodesModel showRecoveryCodesModel = new ShowRecoveryCodesModel()
@@ -646,14 +647,14 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to reset Authenticator";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             await _userManager.SetTwoFactorEnabledAsync(user, false);
             await _userManager.ResetAuthenticatorKeyAsync(user);
             var userId = await _userManager.GetUserIdAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             TempData["success"] = "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
-            return RedirectToAction("EnableAuthenticator");
+            return RedirectToAction(nameof(EnableAuthenticator));
         }
         public async Task<IActionResult> GenerateRecoveryCodes()
         {
@@ -666,14 +667,14 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to generate Receovery Code";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var isTwoFactorEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
             var userId = await _userManager.GetUserIdAsync(user);
             if (!isTwoFactorEnabled)
             {
                 TempData["error"] = "Cannot generate recovery codes for user as they do not have 2FA enabled.";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
             var RecoveryCodesInArray = recoveryCodes.ToArray();
@@ -682,7 +683,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             {
                 RecoveryCodes = RecoveryCodesInArray 
             };         
-            return RedirectToAction("ShowRecoveryCodes", new { recoveryCodes = showRecoveryCodesModel.RecoveryCodes });
+            return RedirectToAction(nameof(ShowRecoveryCodes), new { recoveryCodes = showRecoveryCodesModel.RecoveryCodes });
         }
         public async Task<IActionResult> Disable2fa()
         {
@@ -690,13 +691,13 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to Disable 2FA";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
 
             if (!await _userManager.GetTwoFactorEnabledAsync(user))
             {
                 TempData["error"] = "Cannot disable 2FA for user as it's not currently enabled";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             return View();
         }
@@ -707,16 +708,16 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Error occured! Login again to Disable 2FA";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
             if (!disable2faResult.Succeeded)
             {
                 TempData["error"] = "Error occured! Login again to Disable 2FA";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             TempData["success"] = "2fa has been disabled. You can reenable 2fa when you setup an authenticator app";
-            return RedirectToAction("TwoFactorAuthentication");
+            return RedirectToAction(nameof(TwoFactorAuthentication));
         }
         public async Task<IActionResult> LoginWithRecoveryCode()
         {
@@ -724,7 +725,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Unable to load two-factor authentication user.";
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
             return View();
         }
@@ -739,14 +740,14 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Unable to load two-factor authentication user.";
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
             var recoveryCode = loginWithRecoveryCode.RecoveryCode.Replace(" ", string.Empty);
             var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
             if (result.Succeeded)
             {
                 TempData["success"] = "Login Successful";
-                return RedirectToAction("Index", "Home", new { area = "Customer" });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
             }
             else
             {
@@ -760,7 +761,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (user == null)
             {
                 TempData["error"] = "Unable to load user";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var email = await _userManager.GetEmailAsync(user);
             UpdateEmailModel updateEmail = new UpdateEmailModel()
@@ -811,10 +812,10 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                     updateEmail.Input.NewEmail,
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                return RedirectToAction("UpdateEmailConfirmation");
+                return RedirectToAction(nameof(UpdateEmailConfirmation));
             }
             TempData["error"] = "Your email is unchanged.";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         public IActionResult UpdateEmailConfirmation()
         {
@@ -825,7 +826,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (userId == null || email == null || code == null)
             {
                 TempData["error"] = "Unable to load user";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -836,17 +837,17 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (!result.Succeeded)
             {
                 TempData["error"] = "Error changing Email";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
             if (!setUserNameResult.Succeeded)
             {
                 TempData["error"] = "Error changing Username";
-                return RedirectToAction("Profile");
+                return RedirectToAction(nameof(Profile));
             }
             await _signInManager.RefreshSignInAsync(user);
             TempData["success"] = "Thank you for confirming your email change.";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         public IActionResult PaymentGatewayEsewa(int id,int count)
         {
@@ -854,7 +855,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (userId == null)
             {
                 TempData["error"] = "Login again to continue";
-                return RedirectToAction("Index", "Home", new { area = "Customer" });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
             }
             string productId = id.ToString();
             string countOfProduct= count.ToString();
@@ -877,12 +878,12 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.EsewaPaymentRepo.Update(esewaPayment);
             _repo.Save();
             TempData["success"] = "Payment Successful With Esewa";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         public IActionResult PaymentFailure()
         {
             TempData["error"] = "Payment Failure";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         public async Task<IActionResult> PaymentGatewayKhalti(int id,int count)
         {
@@ -891,7 +892,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             if (userId == null)
             {
                 TempData["error"] = "Login again to continue";
-                return RedirectToAction("Index", "Home", new { area = "Customer" });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
             }
             string productId = id.ToString();
             string countOfProduct = count.ToString();
@@ -932,10 +933,10 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                     return View();
                 }
                 TempData["error"] = "Error occured with Payment by Khalti";
-                return RedirectToAction("Index", "Home", new { area = "Customer" });
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
             }
             TempData["error"] = "Error occured with Payment by Khalti";
-            return RedirectToAction("Index", "Home", new { area = "Customer" });
+            return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Customer" });
 
         }
         public IActionResult PaymentGatewayKhaltiResponse(PaymentKhaltiResponse khaltiPaymentResponse)
@@ -950,7 +951,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.PaymentKhaltiRepo.Update(paymentKhalti);
             _repo.Save();
             TempData["success"] = "Payment Successful with Khalti";
-            return RedirectToAction("Profile");
+            return RedirectToAction(nameof(Profile));
         }
         #endregion
 

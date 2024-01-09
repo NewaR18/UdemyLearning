@@ -96,7 +96,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                     _repo.Save();
                     TempData["success"] = "Item Updated Successfully";
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View();
             //return RedirectToAction("Index");
@@ -138,7 +138,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.ProductRepo.Update(entity);
             _repo.Save();
             TempData["success"] = "Item Updated Successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         public IActionResult Delete(int id)
         {
@@ -146,7 +146,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.ProductRepo.Remove(entity);
             _repo.Save();
             TempData["success"] = "Item Deleted Successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         #region API CALL

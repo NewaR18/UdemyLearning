@@ -1,8 +1,10 @@
 ﻿@model ShoppingCart
 <form method="post">
+    <div asp-validation-summary="All"></div>
     <div class="col-12 col-md-2 pb-1">
         <a class="btn btn-primary form-control " style="height:50px;" asp-action="Index"><i class="bi bi-arrow-bar-left"></i> Back to Home</a>
-    </div><p id="paraProductId" hidden>@Model.Product.Id</p>
+    </div>
+    <p id="paraProductId" hidden>@Model.ProductId</p>
     <div class="card  container pt-4">
         <div class="card-header bg-primary text-light ml-0  row ">
             <div class="col-12 col-md-6">
@@ -59,6 +61,7 @@
                         <div class="row pl-2">
                             <div class="col-2 text-primary"><h4>Count</h4></div>
                             <div class="col-10"><input asp-for="Count" class="form-control" /></div>
+                            <span asp-validation-for="Count" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 text-center">

@@ -1,12 +1,13 @@
 ﻿using AspNetCore.DataAccess.Repository;
 using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
+using AspNetCore.Utilities.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreFromBasic.Areas.Admin.Controllers
 {
-    [Authorize]
+    
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _repo;
@@ -33,7 +34,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 _repo.CategoryRepo.Add(entity);
                 _repo.Save();
                 TempData["success"] = "Item Created Successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             TempData["error"] = "Item could not be created !! Validation error";
             return View();
@@ -55,7 +56,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.CategoryRepo.Update(entity);
             _repo.Save();
             TempData["success"] = "Item Updated Successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         #region API
         public IActionResult Delete(int id)

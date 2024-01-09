@@ -22,9 +22,13 @@ namespace AspNetCore.DataAccess.Repository
         {
             DbSet.Add(entity);
         }
-        public IEnumerable<T> GetAll(string? IncludeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string? IncludeProperties = null)
         {
             IQueryable<T> query = DbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
             if (IncludeProperties != null)
             {
                 foreach(var property in IncludeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries)) 

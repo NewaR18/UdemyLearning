@@ -37,7 +37,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 _repo.LibraryRepo.Add(lib);
                 _repo.Save();
                 TempData["success"] = "New Item Created Successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View();
             //return RedirectToAction("Index");
@@ -68,7 +68,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.LibraryRepo.Remove(entity);
             _repo.Save();
             TempData["success"] = "Item Deleted Successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

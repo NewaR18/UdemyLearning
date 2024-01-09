@@ -37,7 +37,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 _repo.MenuRepo.Add(entity);
                 _repo.Save();
                 TempData["success"] = "Item Created Successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             TempData["error"] = "Item could not be created !! Validation error";
             return View();
@@ -59,7 +59,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.MenuRepo.Update(entity);
             _repo.Save();
             TempData["success"] = "Item Updated Successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         #region API
         public async Task<IActionResult> Delete(int id)

@@ -32,7 +32,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 _repo.CompanyRepo.Add(entity);
                 _repo.Save();
                 TempData["success"] = "Company Created Successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             TempData["error"] = "Company could not be created !! Validation error";
             return View();
@@ -54,7 +54,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
             _repo.CompanyRepo.Update(entity);
             _repo.Save();
             TempData["success"] = "Company Updated Successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         #region API
         [HttpGet]

@@ -30,7 +30,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 _repo.CoverTypeRepo.Add(entity);
                 _repo.Save();
                 TempData["success"] = "Item Created Successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             TempData["error"] = "Item could not be created !! Validation error";
             return View();
@@ -48,7 +48,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 _repo.CoverTypeRepo.Update(entity);
                 _repo.Save();
                 TempData["success"] = "Item Edited Successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             TempData["error"] = "Item could not be edited !! Validation error";
             return View(entity);

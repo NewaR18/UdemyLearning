@@ -58,7 +58,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if(result.Succeeded)
                 {
                     TempData["success"] = "New Role Created";
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
@@ -124,7 +124,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     TempData["success"] = "Role Updated";
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
@@ -174,7 +174,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if(result.Succeeded)
                 {
                     TempData["success"] = $"Roles Assigned to {user.Name}";
-                    return RedirectToAction("RoleAssignmentIndex");
+                    return RedirectToAction(nameof(RoleAssignmentIndex));
                 }
                 else
                 {
@@ -275,7 +275,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                                 {
                                     scope.Complete();
                                     TempData["success"] = $"Roles Assigned to {user.Name}";
-                                    return RedirectToAction("Index");
+                                    return RedirectToAction(nameof(Index));
                                 }
                                 else
                                 {
@@ -297,7 +297,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                             {
                                 scope.Complete();
                                 TempData["success"] = $"Roles Assigned to {user.Name}";
-                                return RedirectToAction("RoleAssignmentIndex");
+                                return RedirectToAction(nameof(RoleAssignmentIndex));
                             }
                             else
                             {

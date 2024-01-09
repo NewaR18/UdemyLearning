@@ -52,7 +52,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                         return RedirectToAction("Index");
                     }
                     TempData["success"] = "User created but could not confirm email";
-                    return RedirectToAction("Index");   
+                    return RedirectToAction(nameof(Index));   
                 }
                 foreach (var error in result.Errors)
                 {
@@ -125,7 +125,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     TempData["success"] = "User Updated Successfully";
-                    return RedirectToAction("Index");
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
