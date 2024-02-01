@@ -560,3 +560,4 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runt
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCoreFromBasic\bin\Debug\net6.0\Stripe.net.dll

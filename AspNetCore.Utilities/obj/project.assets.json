@@ -1838,7 +1838,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -2074,6 +2074,23 @@
           }
         }
       },
+      "Stripe.net/43.10.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2172,7 +2189,7 @@
           "System.Security.Permissions": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Configuration.ConfigurationManager.dll": {
             "related": ".xml"
           }
         },
@@ -5731,10 +5748,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.2",
+      "path": "newtonsoft.json/12.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5757,8 +5774,9 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.2.nupkg.sha512",
-        "newtonsoft.json.nuspec"
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "Newtonsoft.Json.Bson/1.0.1": {
@@ -6061,6 +6079,29 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Stripe.net/43.10.0": {
+      "sha512": "fpu1rw8zti2ALmJH/Yv7ZhTuJMm54Y8MEs6uMCw54G3WdrH0404l9DNvYyqXw92sHLxUr9c9v4dCv8qdtxfwEA==",
+      "type": "package",
+      "path": "stripe.net/43.10.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/net461/Stripe.net.dll",
+        "lib/net461/Stripe.net.xml",
+        "lib/net5.0/Stripe.net.dll",
+        "lib/net5.0/Stripe.net.xml",
+        "lib/net6.0/Stripe.net.dll",
+        "lib/net6.0/Stripe.net.xml",
+        "lib/netcoreapp3.1/Stripe.net.dll",
+        "lib/netcoreapp3.1/Stripe.net.xml",
+        "lib/netstandard2.0/Stripe.net.dll",
+        "lib/netstandard2.0/Stripe.net.xml",
+        "stripe.net.43.10.0.nupkg.sha512",
+        "stripe.net.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -10295,6 +10336,7 @@
       "AspNetCore.DataAccess >= 1.0.0",
       "AspNetCore.Models >= 1.0.0",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.25",
+      "Stripe.net >= 43.10.0",
       "System.Data.SqlClient >= 4.8.5"
     ]
   },
@@ -10352,6 +10394,10 @@
           "Microsoft.AspNetCore.Identity.UI": {
             "target": "Package",
             "version": "[6.0.25, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[43.10.0, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",

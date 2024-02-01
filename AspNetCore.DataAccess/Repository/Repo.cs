@@ -22,7 +22,7 @@ namespace AspNetCore.DataAccess.Repository
         {
             DbSet.Add(entity);
         }
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, string? IncludeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? IncludeProperties = null)
         {
             IQueryable<T> query = DbSet;
             if (filter != null)

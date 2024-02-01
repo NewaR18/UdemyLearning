@@ -17,6 +17,12 @@ namespace AspNetCore.DataAccess.Repository.IRepository
         public IPaymentKhaltiRepo PaymentKhaltiRepo { get; }
         public IEsewaPaymentRepo EsewaPaymentRepo { get; }
         public IShoppingCartRepo ShoppingCartRepo { get; }
-        void Save();
-    }
+        public IOrderHeaderRepo OrderHeaderRepo { get; }
+        public IOrderDetailsRepo OrderDetailsRepo { get; }
+		void Save();
+		void BeginTransaction();
+		void CommitTransaction();
+		void RollbackTransaction();
+        void DisposeTransaction();
+	}
 }

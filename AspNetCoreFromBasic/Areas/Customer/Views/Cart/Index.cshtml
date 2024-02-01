@@ -1,4 +1,11 @@
 ﻿@model ShoppingCartViewModel
+<style>
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+</style>
 <form method="post">
 	<br />
 	<div class="container">
@@ -16,50 +23,88 @@
 			</div>
 
 			<div class="card-body">
-				@foreach(var item in Model.ListCart){
-				<div class="row">
-					<div class="d-none d-lg-block col-lg-1 text-center py-2">
-						<img src="@item.Product.ImageURL" class="rounded" width="100%" />
-					</div>
-					<div class="col-12 col-lg-6 pt-md-3">
-						<h5><strong>@item.Product.Title</strong></h5>
-						<p><small>@Html.Raw(item.Product.Description)</small></p>
-					</div>
-					<div class="col-12  col-lg-5 text-center row">
-						<div class="col-4 text-md-right pt-4">
-							<h6><strong>@item.Product.Price.ToString("c")
-								<span class="text-muted">&nbsp;x&nbsp;</span>@item.Count </strong></h6>
-						</div>
-						<div class="col-6 col-sm-4 col-lg-6 pt-2">
-							<div class="w-75 btn-group" role="group">
-								<a asp-action="plus" asp-route-cartId="@item.Id" class="btn btn-primary">
-									<i class="bi bi-plus-square"></i>
-								</a> &nbsp;
-								<a asp-action="minus" asp-route-cartId="@item.Id" class="btn btn-warning">
-									<i class="bi bi-dash-square"></i>
-								</a>
+				@if (Model.ListCart.Any())
+				{
+					@foreach (var item in Model.ListCart)
+					{
+						<div class="row">
+							<div class="d-none d-lg-block col-lg-1 text-center py-2">
+								<img src="@item.Product.ImageURL" class="rounded" width="100" />
 							</div>
-
+							<div class="col-12 col-lg-6 pt-md-3">
+								<h5>@item.Product.Title</h5>
+								<h6>NRS @item.Price</h6>
+							</div>
+							<div class="col-12  col-lg-5 text-center row">
+								<div class="col-5 text-md-right pt-4 d-flex justify-content-between">
+									<div>
+										<div class="d-flex">
+											<div class="d-flex">
+												<h6>NRS &nbsp;</h6>
+												<h6 id="priceOfProduct_@item.ProductId">@item.Price.ToString("0.00")</h6>
+												<h6>
+													<span class="text-muted">&nbsp;x&nbsp;</span>
+												</h6>
+											</div>
+											<h6 id="countOfProduct_@item.ProductId">
+												@item.Count
+											</h6>
+										</div>
+										<h6 class="ProductCalculations">
+											<span class="text-muted">&nbsp;=&nbsp;NRS </span>
+											<span id="totalPriceOfProduct_@item.ProductId" class="totalPriceOfProduct">@(item.Price * item.Count)</span>
+										</h6>
+									</div>
+								</div>
+								<div class="col-7 col-sm-4 col-lg-6 pt-2">
+									<div class="w-100 btn-group" role="group">
+										<div class="d-flex justify-content-center flex-column">
+											<button type="button" class="reduceCount btn btn-primary p-2 w-75 h-75 d-flex justify-content-center ms-auto" style="background-color:#777777">
+												<i class="bi bi-dash-square"></i>
+											</button>
+										</div>
+										<p hidden>@item.ProductId</p>
+										<input id="txtCount_@item.ProductId" asp-for="@item.Count" min="0" type="number" style="width:50px; text-align:center;" readonly>
+										<div class="d-flex justify-content-center flex-column">
+											<button type="button" class="increaseCount btn btn-primary p-2 w-75 h-75 d-flex justify-content-center" style="background-color:#777777">
+												<i class="bi bi-plus-square"></i>
+											</button>
+										</div> &nbsp;
+										<button type="button" id="removeProductFromCart" class="btn btn-danger">
+											<i class="bi bi-trash-fill"></i>
+										</button>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-2 col-sm-4 col-lg-2 text-right pt-2">
-							<a asp-action="remove" asp-route-cartId="@item.Id" class="btn btn-danger">
-								<i class="bi bi-trash-fill"></i>
-							</a>
+						<hr />
+					}
+					<div class="row">
+						<div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
+							<ul class="list-group">
+								<li class="list-group-item d-flex justify-content-between bg-light">
+									<span class="text-info"><strong> Total (USD)</strong></span>
+									<p class="text-info d-flex">
+										<strong>NRS </strong>&nbsp;
+										<strong id="lblGrandTotal">@Model.OrderHeader.OrderTotal.ToString("0.00")</strong>
+										@*@Model.OrderHeader.OrderTotal.ToString("c")*@
+									</p>
+								</li>
+							</ul>
 						</div>
 					</div>
-				</div>
-				<hr />
+				}else{
+					<div class="row">
+						<div class="col-12">
+							<ul class="list-group">
+								<li class="list-group-item d-flex justify-content-center bg-light">
+									<h6>Your Cart is Empty.</h6>
+								</li>
+							</ul>
+						</div>
+					</div>
 				}
-				<div class="row">
-					<div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
-						<ul class="list-group">
-							<li class="list-group-item d-flex justify-content-between bg-light">
-								<span class="text-info"> Total (USD)</span>
-								@*<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c")</strong>*@
-							</li>
-						</ul>
-					</div>
-				</div>
+				
 
 			</div>
 
@@ -73,3 +118,4 @@
 		</div>
 	</div>
 </form>
+<script src="~/js/cart/cartmanipulation.js"></script>

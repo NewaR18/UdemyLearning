@@ -70,7 +70,7 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
                 }
                 _repo.Save();
                 TempData["success"] = "Product Added To Cart Successfully";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { productId = shoppingCart.ProductId });
             }
             shoppingCart.Product = _repo.ProductRepo.GetFirstOrDefault(x => x.Id == shoppingCart.ProductId, IncludeProperties: "Category,CoverType");
             return View(shoppingCart);

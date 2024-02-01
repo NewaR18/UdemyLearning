@@ -15,6 +15,7 @@
           "Microsoft.EntityFrameworkCore": "7.0.14",
           "Microsoft.EntityFrameworkCore.Design": "7.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.16",
+          "Stripe.net": "43.10.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -2298,6 +2299,18 @@
           }
         }
       },
+      "Stripe.net/43.10.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "6.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "43.10.0.0",
+            "fileVersion": "43.10.0.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -3231,6 +3244,7 @@
           "AspNetCore.DataAccess": "1.0.0",
           "AspNetCore.Models": "1.0.0",
           "Microsoft.AspNetCore.Identity.UI": "6.0.25",
+          "Stripe.net": "43.10.0",
           "System.Data.SqlClient": "4.8.5"
         },
         "runtime": {
@@ -4693,6 +4707,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "Stripe.net/43.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fpu1rw8zti2ALmJH/Yv7ZhTuJMm54Y8MEs6uMCw54G3WdrH0404l9DNvYyqXw92sHLxUr9c9v4dCv8qdtxfwEA==",
+      "path": "stripe.net/43.10.0",
+      "hashPath": "stripe.net.43.10.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.5.0": {
       "type": "package",

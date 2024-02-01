@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AspNetCore.Utilities.Middleware;
+using AspNetCore.Utilities.Payments;
 
 namespace AspNetCore.Utilities.Modules
 {
@@ -21,6 +22,9 @@ namespace AspNetCore.Utilities.Modules
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<AuthorizationMiddleware>();
             services.AddScoped<AppDbContext>();
-        }
+            services.AddScoped<EsewaPayments>();
+            services.AddScoped<KhaltiPayments>();
+			services.AddScoped<StripePayments>();
+		}
     }
 }

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreFromBasic", "AspNetCoreFromBasic\AspNetCoreFromBasic.csproj", "{E5D9F595-2488-497E-88D6-FC2F9EEDBA35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.DataAccess", "AspNetCore.DataAccess\AspNetCore.DataAccess.csproj", "{F06DDD0F-0341-4022-B79A-DDDD30BD5E77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.DataAccess", "AspNetCore.DataAccess\AspNetCore.DataAccess.csproj", "{F06DDD0F-0341-4022-B79A-DDDD30BD5E77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Models", "AspNetCore.Models\AspNetCore.Models.csproj", "{34C0DD97-2BAA-4544-A3C3-AECF6222D75F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Models", "AspNetCore.Models\AspNetCore.Models.csproj", "{34C0DD97-2BAA-4544-A3C3-AECF6222D75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Utilities", "AspNetCore.Utilities\AspNetCore.Utilities.csproj", "{2048BA99-6425-465F-BEB8-880B77B41BC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Utilities", "AspNetCore.Utilities\AspNetCore.Utilities.csproj", "{2048BA99-6425-465F-BEB8-880B77B41BC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\css\\Bootswatch.min.css"
     },
     {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\css\\Cart\\orderConfirmation.css",
+      "PackagePath": "staticwebassets\\css\\Cart\\orderConfirmation.css"
+    },
+    {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\css\\Cart\\orderSummary.css",
+      "PackagePath": "staticwebassets\\css\\Cart\\orderSummary.css"
+    },
+    {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\css\\sidenavbar.css",
       "PackagePath": "staticwebassets\\css\\sidenavbar.css"
     },
@@ -69,6 +77,10 @@
       "PackagePath": "staticwebassets\\images\\users\\be551c6b-9511-4255-ae6c-3df6501e590a.jpg"
     },
     {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\Cart\\CartManipulation.js",
+      "PackagePath": "staticwebassets\\js\\Cart\\CartManipulation.js"
+    },
+    {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\DeleteTDrow.js",
       "PackagePath": "staticwebassets\\js\\DeleteTDrow.js"
     },
@@ -103,6 +115,10 @@
     {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\validation.js",
+      "PackagePath": "staticwebassets\\js\\validation.js"
     },
     {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\lib\\bootstrap\\LICENSE",

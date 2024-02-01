@@ -3458,6 +3458,23 @@
           }
         }
       },
+      "Stripe.net/43.10.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "type": "package",
         "dependencies": {
@@ -5172,6 +5189,7 @@
           "AspNetCore.DataAccess": "1.0.0",
           "AspNetCore.Models": "1.0.0",
           "Microsoft.AspNetCore.Identity.UI": "6.0.25",
+          "Stripe.net": "43.10.0",
           "System.Data.SqlClient": "4.8.5"
         },
         "compile": {
@@ -9768,6 +9786,29 @@
         "version.txt"
       ]
     },
+    "Stripe.net/43.10.0": {
+      "sha512": "fpu1rw8zti2ALmJH/Yv7ZhTuJMm54Y8MEs6uMCw54G3WdrH0404l9DNvYyqXw92sHLxUr9c9v4dCv8qdtxfwEA==",
+      "type": "package",
+      "path": "stripe.net/43.10.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/net461/Stripe.net.dll",
+        "lib/net461/Stripe.net.xml",
+        "lib/net5.0/Stripe.net.dll",
+        "lib/net5.0/Stripe.net.xml",
+        "lib/net6.0/Stripe.net.dll",
+        "lib/net6.0/Stripe.net.xml",
+        "lib/netcoreapp3.1/Stripe.net.dll",
+        "lib/netcoreapp3.1/Stripe.net.xml",
+        "lib/netstandard2.0/Stripe.net.dll",
+        "lib/netstandard2.0/Stripe.net.xml",
+        "stripe.net.43.10.0.nupkg.sha512",
+        "stripe.net.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.5.0": {
       "sha512": "FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
       "type": "package",
@@ -14005,6 +14046,7 @@
       "Microsoft.EntityFrameworkCore >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.12",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.16",
+      "Stripe.net >= 43.10.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -14080,6 +14122,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.16, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[43.10.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

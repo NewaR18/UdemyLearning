@@ -16,5 +16,9 @@
     <Area_SelectedScaffolderID>AreaScaffolder</Area_SelectedScaffolderID>
     <Area_SelectedScaffolderCategoryPath>root/Common</Area_SelectedScaffolderCategoryPath>
     <WebStackScaffolding_DbContextDialogWidth>650</WebStackScaffolding_DbContextDialogWidth>
+    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

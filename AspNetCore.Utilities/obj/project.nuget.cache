@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "N4PI+1jygQJVhWDOoOlMvoZyWQaqzr4ysNQaNTWpuAbIQycDuPa94+fdGq2wayAVdSAwWS1tlbWNN1YMBEf1Ww==",
+  "dgSpecHash": "apd2L9N/55FuqdftWnnwekxppQJTI/D3wRQWiUwCtKnMfsFWsNGeTDpiI+ipd9bHvNq/nVeFzGQSmQHINXeGpg==",
   "success": true,
   "projectFilePath": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.Utilities\\AspNetCore.Utilities.csproj",
   "expectedPackageFiles": [
@@ -105,7 +105,7 @@
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\sudip.shrestha\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\sudip.shrestha\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -127,6 +127,7 @@
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\sudip.shrestha\\.nuget\\packages\\stripe.net\\43.10.0\\stripe.net.43.10.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

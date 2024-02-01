@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using AspNetCore.Models;
 using AspNetCore.Utilities.Middleware;
 using AspNetCore.Utilities.Modules;
+using AspNetCore.Models.ViewModel;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +16,10 @@ var conStr = builder.Configuration.GetConnectionString("Myconnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conStr));
 builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = true).AddDefaultTokenProviders()
     .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.Configure<StripeConfigurations>(builder.Configuration.GetSection("Stripe"));
 builder.Services.RegisterModule();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
@@ -43,6 +47,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();

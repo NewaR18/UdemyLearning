@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PF47uNsSX9gCAmxyJs/TCizjZ1RmBCvTHfneaxVjA4oe/6OQwBPp/VsDDab/7UvhKBmqT60Cdf9HOsSioz39/w==",
+  "dgSpecHash": "A14s1d3M1IAkfXYJA9znmVaRkBqE9nziqhKblKOBvXEooKBupifDCZH6GDv0wTI5+ukTrBcrfbpTHn5L9RleLA==",
   "success": true,
   "projectFilePath": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\AspNetCoreFromBasic.csproj",
   "expectedPackageFiles": [
@@ -211,6 +211,7 @@
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\sudip.shrestha\\.nuget\\packages\\stripe.net\\43.10.0\\stripe.net.43.10.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\sudip.shrestha\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

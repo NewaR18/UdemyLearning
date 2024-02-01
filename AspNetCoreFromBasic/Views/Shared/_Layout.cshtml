@@ -137,6 +137,12 @@
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Menu" asp-action="Index">Menu</a>
                             </li>
                         }
+                        @if (menusNames.Any(x => x.Equals("Cart")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">Cart</a>
+                            </li>
+                        }
                         
                     </ul>
                     @*<partial name="_LoginPartial" />*@
@@ -187,6 +193,7 @@
     <script src="https://cdn.tiny.cloud/1/qxnwuz8oe04xxlvqcyy5j3w88vg649duqyqb23mrv5wqksnt/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

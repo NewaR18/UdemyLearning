@@ -21,9 +21,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\AspNetCore.Models\AspNetCore.Models.csproj" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\AspNetCore.Models\AspNetCore.Models.csproj" />
+	</ItemGroup>
 </Project>

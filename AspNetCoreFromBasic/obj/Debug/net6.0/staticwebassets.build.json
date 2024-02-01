@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LRgySJIQP9P9czk62XRTnG9fHx8+fFnwptUGcuBteR8=",
+  "Hash": "RYn6gPxyHCflbqA8OC5dnq9W+n2Th20wDKPQinbwk+U=",
   "Source": "AspNetCoreFromBasic",
   "BasePath": "_content/AspNetCoreFromBasic",
   "Mode": "Default",
@@ -1088,6 +1088,40 @@
       "OriginalItemSpec": "wwwroot\\css\\Bootswatch.min.css"
     },
     {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\css\\Cart\\orderConfirmation.css",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "css/Cart/orderConfirmation.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Cart\\orderConfirmation.css"
+    },
+    {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\css\\Cart\\orderSummary.css",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "css/Cart/orderSummary.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Cart\\orderSummary.css"
+    },
+    {
       "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\css\\sidenavbar.css",
       "SourceId": "AspNetCoreFromBasic",
       "SourceType": "Discovered",
@@ -1343,6 +1377,23 @@
       "OriginalItemSpec": "wwwroot\\images\\users\\be551c6b-9511-4255-ae6c-3df6501e590a.jpg"
     },
     {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\Cart\\CartManipulation.js",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "js/Cart/CartManipulation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Cart\\CartManipulation.js"
+    },
+    {
       "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\company.js",
       "SourceId": "AspNetCoreFromBasic",
       "SourceType": "Discovered",
@@ -1494,6 +1545,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\validation.js",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "js/validation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\validation.js"
     },
     {
       "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

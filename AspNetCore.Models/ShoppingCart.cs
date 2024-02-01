@@ -23,5 +23,7 @@ namespace AspNetCore.Models
         public ApplicationUser ApplicationUser { get; set; }
         [Range(1,1000, ErrorMessage = "Please Enter the product count between 0 and 1000")]
         public int Count { get; set; }
+        [NotMapped]
+        public decimal Price { get; set; }
     }
 }

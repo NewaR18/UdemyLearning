@@ -225,6 +225,10 @@
               "target": "Package",
               "version": "[6.0.25, )"
             },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[43.10.0, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
@@ -318,6 +322,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.16, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[43.10.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
