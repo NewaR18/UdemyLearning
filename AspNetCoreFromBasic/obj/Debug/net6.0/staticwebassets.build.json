@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RYn6gPxyHCflbqA8OC5dnq9W+n2Th20wDKPQinbwk+U=",
+  "Hash": "h1TI6l2Vmn8/MRygBHwE7UmoJhfRc3sbkhRryLKgkaU=",
   "Source": "AspNetCoreFromBasic",
   "BasePath": "_content/AspNetCoreFromBasic",
   "Mode": "Default",
@@ -1460,6 +1460,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\detailsProduct.js"
+    },
+    {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\Order\\OrderIndex.js",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "js/Order/OrderIndex.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Order\\OrderIndex.js"
     },
     {
       "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\paymentGateway.js",

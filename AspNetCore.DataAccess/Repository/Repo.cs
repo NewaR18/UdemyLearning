@@ -58,5 +58,9 @@ namespace AspNetCore.DataAccess.Repository
         {
             DbSet.RemoveRange(entities);
         }
+        public int GetCount()
+        {
+            return DbSet.Count();
+        }
     }
 }

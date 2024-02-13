@@ -14,5 +14,6 @@ namespace AspNetCore.DataAccess.Repository.IRepository
         public T GetFirstOrDefault(Expression<Func<T,bool>> filter, string? IncludeProperties = null);
         public void Remove(T entity);
         public void RemoveRange(IEnumerable<T> entities);
+        public int GetCount();
     }
 }

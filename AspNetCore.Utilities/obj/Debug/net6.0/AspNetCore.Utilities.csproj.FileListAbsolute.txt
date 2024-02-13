@@ -15,3 +15,5 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\Asp
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\refint\AspNetCore.Utilities.dll
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\AspNetCore.Utilities.pdb
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\obj\Debug\net6.0\ref\AspNetCore.Utilities.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\bin\Debug\net6.0\AspNetCore.CommonFunctions.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.Utilities\bin\Debug\net6.0\AspNetCore.CommonFunctions.pdb

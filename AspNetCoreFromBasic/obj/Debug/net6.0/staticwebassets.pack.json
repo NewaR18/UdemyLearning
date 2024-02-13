@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\js\\DeleteTDrow.js"
     },
     {
+      "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\Order\\OrderIndex.js",
+      "PackagePath": "staticwebassets\\js\\Order\\OrderIndex.js"
+    },
+    {
       "Id": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\company.js",
       "PackagePath": "staticwebassets\\js\\company.js"
     },

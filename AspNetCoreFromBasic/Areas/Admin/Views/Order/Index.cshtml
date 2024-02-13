@@ -1,0 +1,32 @@
+﻿@model IEnumerable<OrderHeader>
+<style>
+    th {
+        padding-left:5px!important;
+        font-size: 14px!important;
+    }
+
+    td {
+        font-size: 15px!important;
+    }
+</style>
+<a class="bg-primary text-light p-2 text-decoration-none mb-3" asp-controller="Order" asp-action="Create">Create New</a>
+<table id="tblData" class="table-bordered table table-striped mt-2">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Order Total</th>
+            <th>Order Date</th>
+            <th>Payment Date</th>
+            <th>Shipping Date</th>
+            <th>Order Status</th>
+            <th>Payment Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*DataTable here*@
+    </tbody>
+</table>
+<script src="~/js/Order/OrderIndex.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>

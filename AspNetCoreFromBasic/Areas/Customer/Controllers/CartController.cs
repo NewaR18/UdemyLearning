@@ -3,6 +3,7 @@ using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
 using AspNetCore.Models.ViewModel;
 using AspNetCore.Utilities.ApiGateway;
+using AspNetCore.Utilities.Commons;
 using AspNetCore.Utilities.Enumerators;
 using AspNetCore.Utilities.Payments;
 using AspNetCore.Utilities.Security;
@@ -29,12 +30,14 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 		private readonly EsewaPayments _esewaPayments;
 		private readonly StripePayments _stripePayments;
 		private readonly KhaltiPayments _khaltiPayments;
+		private readonly SMSSending _smsSending;
 		public CartController(IUnitOfWork unitOfWork, 
 								UserManager<ApplicationUser> userManager,
 								IConfiguration configuration, 
 								EsewaPayments esewaPayments, 
 								StripePayments stripePayments,
-								KhaltiPayments khaltiPayments)
+								KhaltiPayments khaltiPayments,
+								SMSSending smsSending)
         {
             _repo = unitOfWork;
 			_userManager = userManager;
@@ -42,11 +45,10 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 			_esewaPayments = esewaPayments;
 			_stripePayments = stripePayments;
 			_khaltiPayments = khaltiPayments;
+			_smsSending = smsSending;
         }
         public IActionResult Index()
         {
-			int this2 = Enum.GetValues(typeof(PaymentMethodEnum)).Cast<int>().Max();
-
 			var userClaimsIdentity = (ClaimsIdentity)User.Identity!;
             var userIdClaim = userClaimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             if (userIdClaim != null)

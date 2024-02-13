@@ -15,3 +15,5 @@ D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.DataAccess\obj\Debug\net6.0\re
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.DataAccess\obj\Debug\net6.0\AspNetCore.DataAccess.pdb
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.DataAccess\obj\Debug\net6.0\AspNetCore.DataAccess.genruntimeconfig.cache
 D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.DataAccess\obj\Debug\net6.0\ref\AspNetCore.DataAccess.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.DataAccess\bin\Debug\net6.0\AspNetCore.CommonFunctions.dll
+D:\Codes\Chapter 1 amd 2\UdemyLearning\AspNetCore.DataAccess\bin\Debug\net6.0\AspNetCore.CommonFunctions.pdb

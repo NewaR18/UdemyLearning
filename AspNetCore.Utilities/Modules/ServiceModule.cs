@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AspNetCore.Utilities.Middleware;
 using AspNetCore.Utilities.Payments;
+using AspNetCore.Utilities.Commons;
+using AspNetCore.CommonFunctions.Expressions;
 
 namespace AspNetCore.Utilities.Modules
 {
@@ -25,6 +27,7 @@ namespace AspNetCore.Utilities.Modules
             services.AddScoped<EsewaPayments>();
             services.AddScoped<KhaltiPayments>();
 			services.AddScoped<StripePayments>();
+			services.AddScoped<SMSSending>();
 		}
     }
 }

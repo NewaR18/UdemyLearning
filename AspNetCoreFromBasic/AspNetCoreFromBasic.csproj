@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AspNetCore.CommonFunctions\AspNetCore.CommonFunctions.csproj" />
     <ProjectReference Include="..\AspNetCore.DataAccess\AspNetCore.DataAccess.csproj" />
     <ProjectReference Include="..\AspNetCore.Models\AspNetCore.Models.csproj" />
     <ProjectReference Include="..\AspNetCore.Utilities\AspNetCore.Utilities.csproj" />

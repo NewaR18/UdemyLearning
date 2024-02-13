@@ -3720,6 +3720,19 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "AspNetCore.CommonFunctions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AspNetCore.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AspNetCore.CommonFunctions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AspNetCore.CommonFunctions.dll": {}
+        }
+      },
       "AspNetCore.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -10244,6 +10257,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "AspNetCore.CommonFunctions/1.0.0": {
+      "type": "project",
+      "path": "../AspNetCore.CommonFunctions/AspNetCore.CommonFunctions.csproj",
+      "msbuildProject": "../AspNetCore.CommonFunctions/AspNetCore.CommonFunctions.csproj"
+    },
     "AspNetCore.Models/1.0.0": {
       "type": "project",
       "path": "../AspNetCore.Models/AspNetCore.Models.csproj",
@@ -10252,6 +10270,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AspNetCore.CommonFunctions >= 1.0.0",
       "AspNetCore.Models >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.Google >= 6.0.25",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.23",
@@ -10294,6 +10313,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.CommonFunctions\\AspNetCore.CommonFunctions.csproj": {
+              "projectPath": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.CommonFunctions\\AspNetCore.CommonFunctions.csproj"
+            },
             "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.Models\\AspNetCore.Models.csproj": {
               "projectPath": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCore.Models\\AspNetCore.Models.csproj"
             }

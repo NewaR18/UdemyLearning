@@ -3740,10 +3740,24 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "AspNetCore.CommonFunctions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AspNetCore.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AspNetCore.CommonFunctions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AspNetCore.CommonFunctions.dll": {}
+        }
+      },
       "AspNetCore.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "AspNetCore.CommonFunctions": "1.0.0",
           "AspNetCore.Models": "1.0.0",
           "Microsoft.AspNetCore.Authentication.Google": "6.0.25",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.23",
@@ -10319,6 +10333,11 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "AspNetCore.CommonFunctions/1.0.0": {
+      "type": "project",
+      "path": "../AspNetCore.CommonFunctions/AspNetCore.CommonFunctions.csproj",
+      "msbuildProject": "../AspNetCore.CommonFunctions/AspNetCore.CommonFunctions.csproj"
     },
     "AspNetCore.DataAccess/1.0.0": {
       "type": "project",

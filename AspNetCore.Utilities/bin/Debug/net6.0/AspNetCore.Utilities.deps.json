@@ -1971,8 +1971,17 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "AspNetCore.CommonFunctions/1.0.0": {
+        "dependencies": {
+          "AspNetCore.Models": "1.0.0"
+        },
+        "runtime": {
+          "AspNetCore.CommonFunctions.dll": {}
+        }
+      },
       "AspNetCore.DataAccess/1.0.0": {
         "dependencies": {
+          "AspNetCore.CommonFunctions": "1.0.0",
           "AspNetCore.Models": "1.0.0",
           "Microsoft.AspNetCore.Authentication.Google": "6.0.25",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.23",
@@ -3464,6 +3473,11 @@
       "sha512": "sha512-jw9oHHEIVW53mHY9PgrQa98Xo2IZ0ZjrpdOTmtvk+Rvg4tq7dydmxdNqUvJ5YwjDqhn75mBXWttWjiKhWP53LQ==",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
+    },
+    "AspNetCore.CommonFunctions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "AspNetCore.DataAccess/1.0.0": {
       "type": "project",

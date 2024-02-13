@@ -22,6 +22,7 @@
     </PackageReference>
   </ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\AspNetCore.CommonFunctions\AspNetCore.CommonFunctions.csproj" />
 		<ProjectReference Include="..\AspNetCore.Models\AspNetCore.Models.csproj" />
 	</ItemGroup>
 </Project>
