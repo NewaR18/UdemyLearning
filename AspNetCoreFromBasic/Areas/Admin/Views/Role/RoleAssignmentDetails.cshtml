@@ -11,6 +11,13 @@
         <div class="col-6">
         </div>
         <div class="p-1 col-6">
+            <label asp-for="Email" class="form-label"></label>
+            <input class="form-control" asp-for="Email" readonly>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col-6">
+        </div>
+        <div class="p-1 col-6">
             <label asp-for="RoleName" class="form-label"></label>
             <input class="form-control" asp-for="RoleName" readonly>
             <span asp-validation-for="RoleName" class="text-danger"></span>

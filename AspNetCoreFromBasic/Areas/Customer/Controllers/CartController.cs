@@ -7,7 +7,9 @@ using AspNetCore.Utilities.Commons;
 using AspNetCore.Utilities.Enumerators;
 using AspNetCore.Utilities.Payments;
 using AspNetCore.Utilities.Security;
+using AspNetCore.Utilities.StaticDefinitions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
@@ -153,6 +155,7 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 					_repo.DisposeTransaction();
 				}
 			}
+			ClearShoppingCart();
 			return await MakePayment(shoppingCartViewModel);
 		}
 		public async Task<IActionResult> MakePayment(ShoppingCartViewModel shoppingCartViewModel)
@@ -178,7 +181,7 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 				}
 				TempData["error"] = "Error making payment with Khalti";
 			}
-			else if (shoppingCartViewModel.PaymentMethod == nameof(PaymentMethodEnum.Scribe))
+			else if (shoppingCartViewModel.PaymentMethod == nameof(PaymentMethodEnum.Stripe))
 			{
 				Session session = _stripePayments.PaymentInitiate(shoppingCartViewModel);
 				if (!string.IsNullOrEmpty(session.Url))
@@ -186,7 +189,7 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 					Response.Headers.Add("Location", session.Url);
 					return new StatusCodeResult(303);
 				}
-				TempData["error"] = "Error making payment with Scribe";
+				TempData["error"] = "Error making payment with Stripe";
 			}
 			return RedirectToAction(nameof(Summary));
 		}
@@ -210,14 +213,14 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 		public IActionResult EsewaFailure(string data)
 		{
 			TempData["error"] = "Payment Failed from Esewa";
-			return RedirectToAction(nameof(Summary));
-		}
+            return RedirectToAction("Index", "Order", new { area = "Admin"});
+        }
 		public IActionResult KhaltiSuccess(PaymentKhaltiResponse khaltiPaymentResponse)
 		{
-			if (string.IsNullOrEmpty(khaltiPaymentResponse.txnId))
+			if (string.Equals(khaltiPaymentResponse.status, "Completed", StringComparison.OrdinalIgnoreCase))
 			{
 				TempData["error"] = "Payment Failed from Khalti";
-				return RedirectToAction(nameof(Summary));
+				return RedirectToAction("Index","Order");
 			}
 			int OrderId = _khaltiPayments.OnSuccess(khaltiPaymentResponse);
 			ClearShoppingCart();
@@ -226,8 +229,8 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 		public IActionResult KhaltiFailure(PaymentKhaltiResponse khaltiPaymentResponse)
 		{
 			TempData["error"] = "Payment Failed from Khalti";
-			return RedirectToAction(nameof(Summary));
-		}
+            return RedirectToAction("Index", "Order", new { area = "Admin"});
+        }
 		public void ClearShoppingCart()
 		{
 			var userClaimsIdentity = (ClaimsIdentity)User.Identity!;
@@ -237,7 +240,8 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 																GetAll(x => x.ApplicationUserId.Equals(userId));
 			_repo.ShoppingCartRepo.RemoveRange(shoppingCartList.ToList());
 			_repo.Save();
-		}
+            HttpContext.Session.SetInt32(StaticStrings.ShoppingCartCountForUser, 0);
+        }
 
 		#region Cart Apis
 		[HttpPost]
@@ -255,7 +259,9 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
                 var cartData = _repo.ShoppingCartRepo.GetFirstOrDefault(x => x.ApplicationUserId.Equals(userId) && x.ProductId.Equals(productId));
                 cartData.Count = count;
                 _repo.Save();
-				return Json(new { success = true, message = "Cart Quantity Updated Successfully" });
+                HttpContext.Session.SetInt32(StaticStrings.ShoppingCartCountForUser,
+                                                    _repo.ShoppingCartRepo.GetAll(x => x.ApplicationUserId.Equals(userId)).Count());
+                return Json(new { success = true, message = "Cart Quantity Updated Successfully" });
 			}
             return Json(new { success = false, message = "Error occurred!! Please login again to continue" });
 		}
@@ -274,7 +280,9 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 				}
 				_repo.ShoppingCartRepo.Remove(cartData);
 				_repo.Save();
-				return Json(new { success = true, message = "Product Removed From Cart" });
+                HttpContext.Session.SetInt32(StaticStrings.ShoppingCartCountForUser,
+								_repo.ShoppingCartRepo.GetAll(x=>x.ApplicationUserId.Equals(userId)).Count());
+                return Json(new { success = true, message = "Product Removed From Cart" });
 			}
 			return Json(new { success = true, message = "Error occurred!! Please login again to continue" });
 		}

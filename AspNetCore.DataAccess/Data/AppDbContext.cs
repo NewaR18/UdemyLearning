@@ -23,5 +23,7 @@ namespace AspNetCore.DataAccess.Data
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
         public DbSet<OrderHeader> OrderHeader { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
-	}
+        public DbSet<PaymentRefund> PaymentRefund { get; set; }
+
+    }
 }

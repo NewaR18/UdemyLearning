@@ -383,6 +383,7 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
                 string rolesAsString = string.Join(", ", roles);
                 userRole.UserId=user.Id;
                 userRole.UserName = user.Name;
+                userRole.Email = user.Email;
                 userRole.RoleName = rolesAsString;
                 userRoles.Add(userRole);
             }

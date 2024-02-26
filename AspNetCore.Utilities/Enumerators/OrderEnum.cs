@@ -12,7 +12,6 @@ namespace AspNetCore.Utilities.Enumerators
 		Approved = 1,
 		Processing =2,
 		Shipped = 3,
-		Cancelled = 4,
-		Refunded =5
+		Cancelled = 4
 	}
 }

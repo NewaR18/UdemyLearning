@@ -13,6 +13,8 @@ using AspNetCore.Utilities.Middleware;
 using AspNetCore.Utilities.Payments;
 using AspNetCore.Utilities.Commons;
 using AspNetCore.CommonFunctions.Expressions;
+using AspNetCore.Utilities.ManageBackgroundJobs;
+using AspNetCore.DataAccess.DbInitializers;
 
 namespace AspNetCore.Utilities.Modules
 {
@@ -28,6 +30,8 @@ namespace AspNetCore.Utilities.Modules
             services.AddScoped<KhaltiPayments>();
 			services.AddScoped<StripePayments>();
 			services.AddScoped<SMSSending>();
-		}
+			services.AddScoped<ManageHangfireJobs>();
+            services.AddScoped<IDbInitializer,DbInitializer>();
+        }
     }
 }

@@ -4,15 +4,35 @@ $(document).ready(function () {
         .clone(true)
         .addClass('filters')
         .appendTo('#tblData thead');
-    LoadDataTable();
+    var url = window.location.search;
+    debugger;
+    switch (url) {
+        case url.includes("pending") ? url : "Other":
+            LoadDataTable("Pending")
+            break;
+        case url.includes("approved") ? url : "Other":
+            LoadDataTable("Approved")
+            break;
+        case url.includes("processing") ? url : "Other":
+            LoadDataTable("Processing")
+            break;
+        case url.includes("shipped") ? url : "Other":
+            LoadDataTable("Shipped");
+            break;
+        default:
+            LoadDataTable()
+            break;
+    }
 })
-function LoadDataTable() {
+function LoadDataTable(status) {
     dataTable = $('#tblData').DataTable({
         "ajax": {
             "url": "/Admin/Order/GetAll",
             "type": "POST",
             "contentType": "application/json",
             "data": function (d) {
+                debugger;
+                d.status = status == undefined?'':status;
                 return JSON.stringify(d);
             }
         },
@@ -55,6 +75,7 @@ function LoadDataTable() {
             }
         ],
         orderCellsTop: true,
+        ordering: false,
         fixedHeader: true,
         searching: true,
         processing: true,
@@ -73,7 +94,7 @@ function LoadDataTable() {
                     );
                     var title = $(cell).text();
                     if (title != "") {
-                        $(cell).html('<input type="text" style="width:100px;" />');
+                        $(cell).html('<input type="text" id="'+title.replace(' ','')+'" style="width:100px;" />');
                     }
                     $(
                         'input',

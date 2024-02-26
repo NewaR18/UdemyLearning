@@ -11,6 +11,8 @@ namespace AspNetCore.Utilities.Enumerators
 		Pending = 0,
 		Approved = 1,
 		ApprovedForDelayedPayment = 2,
-		Rejected = 3
-	}
+		Rejected = 3,
+		Cancelled = 4,
+        Refunded = 5
+    }
 }

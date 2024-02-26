@@ -10,6 +10,6 @@ namespace AspNetCore.Utilities.Enumerators
     {
         Esewa = 1,
 		Khalti = 2,
-		Scribe = 3
+		Stripe = 3
     }
 }

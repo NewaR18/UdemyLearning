@@ -48,7 +48,7 @@ namespace AspNetCore.DataAccess.Repository
                     query = query.Include(property);
                 }
             }
-            return query.FirstOrDefault(filter);
+            return query.FirstOrDefault()!;
         }
         public void Remove(T entity)
         {

@@ -1,4 +1,5 @@
 ﻿using AspNetCore.CommonFunctions.Expressions;
+using AspNetCore.CommonFunctions.PredicateBuilderThis;
 using AspNetCore.DataAccess.Data;
 using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,18 +68,50 @@ namespace AspNetCore.DataAccess.Repository
             }
             return query;
         }
-        public PaginatedOrderHeader GetPaginatedRows(int skip, int TotalCountPerPage, List<ColumnFilterModel> Columns)
-        {
+        public PaginatedOrderHeader GetPaginatedRows(DataTableAjaxModel dataTableAjaxModel, ClaimsPrincipal User)
+       {
             PredicateFilter _predicate = new PredicateFilter();
-            skip = skip < 0 ? 0 : skip;
+            var searchCondition = PredicateBuilder.True<OrderHeader>();
+            bool ShowAll = false;
+            if(User.IsInRole("Admin") || User.IsInRole("Super Admin")){
+                ShowAll = true;
+            }
+            if (!ShowAll)
+            {
+                var userClaimsIdentity = (ClaimsIdentity)User.Identity!;
+                var userIdClaim = userClaimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                searchCondition = searchCondition.And(s=>s.ApplicationUserId.Equals(userIdClaim.Value));
+            }
+            if (!string.IsNullOrEmpty(dataTableAjaxModel.Status))
+            {
+                searchCondition = searchCondition.And(p => p.OrderStatus.ToLower().Contains(dataTableAjaxModel.Status.ToLower()));
+            }
+            //var data2 = _context.OrderHeader
+            //                                .Where(_predicate.predicate(dataTableAjaxModel.Columns)).Where(searchCondition)
+            //                               .Skip(dataTableAjaxModel.Start).Take(dataTableAjaxModel.Length).AsNoTracking();
+            IQueryable<OrderHeader> AllData = _context.OrderHeader
+                                            .Where(_predicate.predicate(dataTableAjaxModel.Columns)).Where(searchCondition);
+            var paginatedData = AllData.Skip(dataTableAjaxModel.Start).Take(dataTableAjaxModel.Length);//.AsNoTracking();
             PaginatedOrderHeader paginatedOrderHeader = new PaginatedOrderHeader()
             {
-                Data = _context.OrderHeader
-                                            .Where(_predicate.predicate(Columns))
-                                            .Skip(skip).Take(TotalCountPerPage).AsNoTracking(),
-                TotalCount = _context.OrderHeader.Where(_predicate.predicate(Columns)).Count()
+                Data = paginatedData,
+                TotalCount = AllData.Count()
             };
             return paginatedOrderHeader;
+        }
+        public int GetCountOfUser(string userId)
+        {
+            return _context.OrderHeader.Where(s => s.ApplicationUserId.Equals(userId)).Count();
+        }
+        //Method overloading
+        public OrderHeader GetFirstOrDefault(Expression<Func<OrderHeader, bool>>? filter = null)
+        {
+            OrderHeader query = _context.OrderHeader
+                                            .Where(filter)
+                                            .Include(a=> a.ApplicationUser)
+                                            .Include(o => o.OrderDetails)
+                                            .ThenInclude(od => od.Product).FirstOrDefault()!;
+            return query;
         }
     }
 }

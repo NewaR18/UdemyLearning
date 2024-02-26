@@ -124,18 +124,30 @@ namespace AspNetCore.Utilities.Payments
 		}
 		public int OnFailure(string data)
 		{
-			string decrypedResponse = SHAConfiguration.DecodeHMACSHA256(data);
-			EsewaSuccessResponse esewaSuccessReponse = JsonConvert.DeserializeObject<EsewaSuccessResponse>(decrypedResponse)!;
-			EsewaPayment esewaPayment = _repo.EsewaPaymentRepo.GetFirstOrDefault(x => x.TransactionId == esewaSuccessReponse.transaction_uuid);
-			esewaPayment.TransactionCode = esewaSuccessReponse.transaction_code;
-			esewaPayment.Status = esewaSuccessReponse.status;
-			_repo.Save();
-			int OrderId = Convert.ToInt32(esewaSuccessReponse.transaction_uuid.Split('_').Last());
-			var order = _repo.OrderHeaderRepo.GetFirstOrDefault(x => x.Id == OrderId);
-			_repo.OrderHeaderRepo.UpdateStatus(OrderId, nameof(OrderEnum.Approved), nameof(PaymentEnum.Approved));
-			_repo.OrderHeaderRepo.UpdateStripeData(OrderId, "Esewa", esewaSuccessReponse.transaction_code);
-			_repo.Save();
-			return OrderId;
+			//Logic
+			return 0;
 		}
-	}
+        public void StartRefundProcess(OrderHeaderPayViewModel orderHeaderPayViewModel)
+        {
+            //Refund Logic not available for Esewa and Khalti, Gotta provide refund manually
+            PaymentRefund paymentRefund = new PaymentRefund()
+            {
+                Id = 0,
+                PaymentOptions = nameof(PaymentMethodEnum.Esewa),
+                Currency = "npr",
+                CreatedDate = DateTime.Now,
+                Reason = "requested_by_customer",
+                Status = "notRefunded",
+                PaymentIntentId = orderHeaderPayViewModel.OrderHeader.PaymentIntentId,
+                StripeId = "",
+                BalanceTransactionId = "",
+                ChargeId = "",
+                RequestId = ""
+            };
+            _repo.PaymentRefundRepo.Add(paymentRefund);
+            _repo.Save();
+            _repo.OrderHeaderRepo.UpdateStatus(orderHeaderPayViewModel.OrderHeader.Id, nameof(OrderEnum.Cancelled), nameof(PaymentEnum.Refunded));
+            _repo.Save();
+        }
+    }
 }

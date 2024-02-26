@@ -45,5 +45,9 @@ namespace AspNetCore.Models
 		public string PostalCode { get; set; }
 		[Required]
 		public string Name { get; set; }
+
+		//Added Later For Join
+		[ValidateNever]
+		public List<OrderDetails> OrderDetails {  get; set; } 
 	}
 }

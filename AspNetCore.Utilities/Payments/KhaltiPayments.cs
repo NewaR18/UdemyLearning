@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Stripe;
 using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
@@ -94,18 +95,40 @@ namespace AspNetCore.Utilities.Payments
 		{
 			PaymentKhalti paymentKhalti = _repo.PaymentKhaltiRepo.GetFirstOrDefault(x => x.Pidx == khaltiPaymentResponse.pidx);
 			paymentKhalti.Amount = khaltiPaymentResponse.amount / 100;
-			paymentKhalti.Status = "COMPLETED";
+			paymentKhalti.Status = khaltiPaymentResponse.status;
 			paymentKhalti.MobileNo = khaltiPaymentResponse.mobile;
-			paymentKhalti.TxnId = khaltiPaymentResponse.txnId;
+			paymentKhalti.TxnId = khaltiPaymentResponse.tidx;
 			paymentKhalti.PurchaseOrderId = khaltiPaymentResponse.purchase_order_id;
 			paymentKhalti.PurchaseOrderName = khaltiPaymentResponse.purchase_order_name;
 			_repo.Save();
 			int OrderId = Convert.ToInt32(khaltiPaymentResponse.purchase_order_id.Split('_').Last());
 			var order = _repo.OrderHeaderRepo.GetFirstOrDefault(x => x.Id == OrderId);
 			_repo.OrderHeaderRepo.UpdateStatus(OrderId, nameof(OrderEnum.Approved), nameof(PaymentEnum.Approved));
-			_repo.OrderHeaderRepo.UpdateStripeData(OrderId, "Khalti", khaltiPaymentResponse.txnId);
+			_repo.OrderHeaderRepo.UpdateStripeData(OrderId, "Khalti", khaltiPaymentResponse.tidx);
 			_repo.Save();
 			return OrderId;
 		}
-	}
+        public void StartRefundProcess(OrderHeaderPayViewModel orderHeaderPayViewModel)
+        {
+            //Refund Logic not available for Esewa and Khalti, Gotta provide refund manually
+            PaymentRefund paymentRefund = new PaymentRefund()
+            {
+                Id = 0,
+                PaymentOptions = nameof(PaymentMethodEnum.Khalti),
+                Currency = "npr",
+                CreatedDate = DateTime.Now,
+                Reason = "requested_by_customer",
+                Status = "notRefunded",
+                PaymentIntentId = orderHeaderPayViewModel.OrderHeader.PaymentIntentId,
+                StripeId = "",
+                BalanceTransactionId = "",
+                ChargeId = "",
+                RequestId = ""
+            };
+            _repo.PaymentRefundRepo.Add(paymentRefund);
+            _repo.Save();
+            _repo.OrderHeaderRepo.UpdateStatus(orderHeaderPayViewModel.OrderHeader.Id, nameof(OrderEnum.Cancelled), nameof(PaymentEnum.Refunded));
+            _repo.Save();
+        }
+    }
 }

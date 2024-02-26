@@ -7,6 +7,8 @@ using AspNetCore.Utilities.Middleware;
 using AspNetCore.Utilities.Modules;
 using AspNetCore.Models.ViewModel;
 using Stripe;
+using Hangfire;
+using AspNetCore.DataAccess.DbInitializers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +20,16 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options => option
     .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.Configure<StripeConfigurations>(builder.Configuration.GetSection("Stripe"));
 builder.Services.RegisterModule();
+builder.Services.AddHangfire(configuration => configuration
+        .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+        .UseSimpleAssemblyNameTypeSerializer()
+        .UseRecommendedSerializerSettings()
+        .UseSqlServerStorage(builder.Configuration.GetConnectionString("HangfireConnection")));
+builder.Services.AddHangfireServer();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
 builder.Services.AddDistributedMemoryCache();
+builder.Services.Configure<MailDetailsViewModel>(builder.Configuration.GetSection("mailDetails"));
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
@@ -48,8 +57,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+SeedDatabase();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseHangfireDashboard();
 app.UseSession();
 app.RunWithProgramStart();
 
@@ -57,5 +68,14 @@ app.UseMiddleware<AuthorizationMiddleware>();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
-
+app.MapHangfireDashboard();
 app.Run();
+
+void SeedDatabase()
+{
+    using(var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}

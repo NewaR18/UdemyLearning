@@ -52,8 +52,6 @@ namespace AspNetCore.CommonFunctions.Expressions
                             break;
                     }
                 }
-                int iValue;
-                
             }
             return searchCondition;
         }

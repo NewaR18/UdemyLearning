@@ -56,7 +56,8 @@
 			CallChangeCount(this);
 		}
 	})
-	$("#removeProductFromCart").on('click', function () {
+	$(".removeProductFromCart").on('click', function () {
+		debugger;
 		var productId = $(this).closest(".btn-group").find("p").text();
 		Delete('/Customer/Cart/Delete?productId='+productId)
 	})

@@ -943,9 +943,9 @@ namespace AspNetCoreFromBasic.Areas.Admin.Controllers
         {
             PaymentKhalti paymentKhalti = _repo.PaymentKhaltiRepo.GetFirstOrDefault(x => x.Pidx == khaltiPaymentResponse.pidx);
             paymentKhalti.Amount = khaltiPaymentResponse.amount/100;
-            paymentKhalti.Status = "COMPLETED";
+            paymentKhalti.Status = khaltiPaymentResponse.status;
             paymentKhalti.MobileNo = khaltiPaymentResponse.mobile;
-            paymentKhalti.TxnId = khaltiPaymentResponse.txnId;
+            paymentKhalti.TxnId = khaltiPaymentResponse.tidx;
             paymentKhalti.PurchaseOrderId = khaltiPaymentResponse.purchase_order_id;
             paymentKhalti.PurchaseOrderName = khaltiPaymentResponse.purchase_order_name;
             _repo.PaymentKhaltiRepo.Update(paymentKhalti);

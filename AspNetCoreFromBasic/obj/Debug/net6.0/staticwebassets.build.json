@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "h1TI6l2Vmn8/MRygBHwE7UmoJhfRc3sbkhRryLKgkaU=",
+  "Hash": "Xqwq8S6jLSNAoWoK/8JuWBZTprG6/4lw20shnScnvJQ=",
   "Source": "AspNetCoreFromBasic",
   "BasePath": "_content/AspNetCoreFromBasic",
   "Mode": "Default",
@@ -1460,6 +1460,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\detailsProduct.js"
+    },
+    {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\Order\\orderDetails.js",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "js/Order/orderDetails.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Order\\orderDetails.js"
     },
     {
       "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\Order\\OrderIndex.js",

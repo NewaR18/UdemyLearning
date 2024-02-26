@@ -1,4 +1,7 @@
 ﻿@using AspNetCore.DataAccess.Repository.IRepository;
+@using AspNetCore.Utilities.StaticDefinitions;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor httpContextAccessor
 @inject SignInManager<ApplicationUser> signInManager
 @inject UserManager<ApplicationUser> _userManager
 @inject RoleManager<ApplicationRole> _roleManager
@@ -46,7 +49,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AspNetCoreFromBasic</title>
+    <title>@ViewData["Title"] - AspNetCoreAdvanced</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/bootswatch.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -60,7 +63,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AspNetCoreFromBasic</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AspNetCoreAdvanced</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -140,7 +143,9 @@
                         @if (menusNames.Any(x => x.Equals("Cart")))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">Cart</a>
+                                <a class="nav-link text-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                    @await Component.InvokeAsync("ShoppingCart")
+                                </a>
                             </li>
                         }
                         @if (menusNames.Any(x => x.Equals("Order")))

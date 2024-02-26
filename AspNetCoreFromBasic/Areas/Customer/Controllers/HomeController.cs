@@ -1,7 +1,9 @@
 ﻿using AspNetCore.DataAccess.Migrations;
 using AspNetCore.DataAccess.Repository.IRepository;
 using AspNetCore.Models;
+using AspNetCore.Utilities.StaticDefinitions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using System.Diagnostics;
@@ -63,11 +65,15 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
                 if (existingShoppingCart != null)
                 {
                     _repo.ShoppingCartRepo.IncrementCount(existingShoppingCart, shoppingCart.Count);
-                }
+					_repo.Save();
+				}
                 else
                 {
                     _repo.ShoppingCartRepo.Add(shoppingCart);
-                }
+					_repo.Save();
+					HttpContext.Session.SetInt32(StaticStrings.ShoppingCartCountForUser,
+													_repo.ShoppingCartRepo.GetAll(x=>x.ApplicationUserId.Equals(userClaims.Value)).Count());
+				}
                 _repo.Save();
                 TempData["success"] = "Product Added To Cart Successfully";
                 return RedirectToAction(nameof(Details), new { productId = shoppingCart.ProductId });

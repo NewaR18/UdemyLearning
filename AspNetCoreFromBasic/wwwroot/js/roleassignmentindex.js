@@ -5,10 +5,11 @@ $(document).ready(function(){
 function LoadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/admin/role/GetUserRoles"
+            "url": "/Admin/Role/GetUserRoles"
         },
         "columns": [
             {"data": "userName","width":"15%"},
+            {"data": "email", "width": "15%" },
             {"data": "roleName","width":"15%"},
             {
                 "data": "userId",

@@ -5,11 +5,14 @@ using AspNetCore.Utilities.ApiGateway;
 using AspNetCore.Utilities.Enumerators;
 using AspNetCore.Utilities.Security;
 using Azure;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Stripe;
 using Stripe.Checkout;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,5 +71,33 @@ namespace AspNetCore.Utilities.Payments
 				_repo.Save();
 			}
 		}
+		public void StartRefundProcess(OrderHeaderPayViewModel orderHeaderPayViewModel)
+		{
+            var options = new RefundCreateOptions
+            {
+                Reason = RefundReasons.RequestedByCustomer,
+                PaymentIntent = orderHeaderPayViewModel.OrderHeader.PaymentIntentId
+            };
+            var service = new RefundService();
+            Refund refund = service.Create(options);
+			PaymentRefund paymentRefund = new PaymentRefund()
+			{
+				Id=0,
+				PaymentOptions = nameof(PaymentMethodEnum.Stripe),
+				Currency = refund.Currency,
+				CreatedDate = refund.Created,
+				Reason = refund.Reason,
+				Status = refund.Status,
+				PaymentIntentId = refund.PaymentIntentId,
+				StripeId = refund.Id,
+				BalanceTransactionId = refund.BalanceTransactionId,
+				ChargeId = refund.ChargeId,
+				RequestId = refund.StripeResponse.RequestId
+			};
+			_repo.PaymentRefundRepo.Add(paymentRefund);
+			_repo.Save();
+            _repo.OrderHeaderRepo.UpdateStatus(orderHeaderPayViewModel.OrderHeader.Id, nameof(OrderEnum.Cancelled), nameof(PaymentEnum.Refunded));
+			_repo.Save();
+        }
 	}
 }

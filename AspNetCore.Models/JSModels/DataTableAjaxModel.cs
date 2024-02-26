@@ -8,6 +8,7 @@ namespace AspNetCore.Models.JSModels
 {
     public class DataTableAjaxModel
     {
+        public string Status { get; set; } //Added Later for addition of Filter From 5 anchor buttons
         public int Draw { get; set; }
         public int Start { get; set; }
         public int Length { get; set; }

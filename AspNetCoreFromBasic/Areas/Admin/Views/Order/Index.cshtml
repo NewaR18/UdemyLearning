@@ -1,15 +1,76 @@
 ﻿@model IEnumerable<OrderHeader>
+﻿@{
+    var status = Context.Request.Query["status"];
+    var pending = "text-primary";
+    var approved = "text-primary";
+    var processing = "text-primary";
+    var shipped = "text-primary";
+    var all = "text-primary";
+    switch (status)
+    {
+        case "pending":
+            pending = "active text-white";
+            break;
+        case "approved":
+            approved = "active text-white";
+            break;
+        case "processing":
+            processing = "active text-white";
+            break;
+        case "shipped":
+            shipped = "active text-white";
+            break;
+        default:
+            all = "active text-white";
+            break;
+    }
+
+}
 <style>
     th {
-        padding-left:5px!important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
         font-size: 14px!important;
     }
 
     td {
-        font-size: 15px!important;
+        font-size: 14px!important;
     }
+
+    .list-group-item{
+        padding: 2px 5px 2px 5px !important
+    }
+
 </style>
-<a class="bg-primary text-light p-2 text-decoration-none mb-3" asp-controller="Order" asp-action="Create">Create New</a>
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="bg-primary text-light p-2 text-decoration-none" asp-controller="Order" asp-action="Create">Create New</a>
+    </div>
+    <div>
+        <ul class="list-group list-group-horizontal-sm">
+            <a style="text-decoration:none;" asp-controller="Order"
+               asp-action="Index" asp-route-status="pending">
+            <li class="list-group-item @pending">Pending</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Order"
+               asp-action="Index" asp-route-status="approved">
+            <li class="list-group-item @approved">Approved</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Order"
+               asp-action="Index" asp-route-status="processing">
+            <li class="list-group-item @processing">Processing</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Order"
+               asp-action="Index" asp-route-status="shipped">
+            <li class="list-group-item @shipped">Shipped</li>
+            </a>
+            <a style="text-decoration:none;" asp-controller="Order"
+               asp-action="Index" asp-route-status="all">
+            <li class="list-group-item @all">All</li>
+            </a>
+        </ul>
+    </div>
+</div>
 <table id="tblData" class="table-bordered table table-striped mt-2">
     <thead>
         <tr>
