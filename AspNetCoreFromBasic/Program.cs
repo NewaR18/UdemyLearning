@@ -9,6 +9,8 @@ using AspNetCore.Models.ViewModel;
 using Stripe;
 using Hangfire;
 using AspNetCore.DataAccess.DbInitializers;
+using AspNetCore.Utilities.WebSocketImplementation;
+using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,7 @@ builder.Services.AddHangfire(configuration => configuration
         .UseSimpleAssemblyNameTypeSerializer()
         .UseRecommendedSerializerSettings()
         .UseSqlServerStorage(builder.Configuration.GetConnectionString("HangfireConnection")));
+builder.Services.AddSignalR();
 builder.Services.AddHangfireServer();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
@@ -41,6 +44,9 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromSeconds(10);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+});
+builder.Services.AddCors(options => {
+    options.AddPolicy("CORSPolicy", builder => builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed((hosts) => true));
 });
 var app = builder.Build();
 
@@ -62,13 +68,15 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseHangfireDashboard();
 app.UseSession();
+app.UseCors("CORSPolicy");
 app.RunWithProgramStart();
-
+app.MapHub<DashboardHub>("/dashboardhub");
+app.MapHub<ChatHub>("/chatHub");
+app.MapHangfireDashboard();
 app.UseMiddleware<AuthorizationMiddleware>();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
-app.MapHangfireDashboard();
 app.Run();
 
 void SeedDatabase()

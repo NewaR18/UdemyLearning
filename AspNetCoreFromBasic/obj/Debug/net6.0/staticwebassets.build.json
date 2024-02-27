@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Xqwq8S6jLSNAoWoK/8JuWBZTprG6/4lw20shnScnvJQ=",
+  "Hash": "HgOWekk5T7+qsx/og8+EF8zMOjKzVKNyWY9fLbCnhpQ=",
   "Source": "AspNetCoreFromBasic",
   "BasePath": "_content/AspNetCoreFromBasic",
   "Mode": "Default",
@@ -1562,6 +1562,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\roleassignmentindex.js"
+    },
+    {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\SignalR\\ChatwithSignalR.js",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "js/SignalR/ChatwithSignalR.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\SignalR\\ChatwithSignalR.js"
+    },
+    {
+      "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\SignalR\\signalRDashboard.js",
+      "SourceId": "AspNetCoreFromBasic",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\",
+      "BasePath": "_content/AspNetCoreFromBasic",
+      "RelativePath": "js/SignalR/signalRDashboard.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\SignalR\\signalRDashboard.js"
     },
     {
       "Identity": "D:\\Codes\\Chapter 1 amd 2\\UdemyLearning\\AspNetCoreFromBasic\\wwwroot\\js\\site.js",

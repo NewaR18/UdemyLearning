@@ -59,6 +59,10 @@ namespace AspNetCore.Utilities.Middleware
                     {
                         await next(context);
                     }
+                    else if(context.Request.Path.Value == "/dashboardHub" || context.Request.Path.Value == "/chatHub")
+                    {
+                        await next(context);
+                    }
                     else
                     {
                         context.Response.Redirect("/Customer/Home/AccessDenied");

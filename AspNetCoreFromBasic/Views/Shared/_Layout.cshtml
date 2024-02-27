@@ -154,6 +154,12 @@
                                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>
                             </li>
                         }
+                        @if (menusNames.Any(x => x.Equals("Dashboard")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Chat</a>
+                            </li>
+                        }
                     </ul>
                     @*<partial name="_LoginPartial" />*@
                     <ul class="navbar-nav">

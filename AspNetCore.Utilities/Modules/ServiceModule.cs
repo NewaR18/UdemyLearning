@@ -15,6 +15,7 @@ using AspNetCore.Utilities.Commons;
 using AspNetCore.CommonFunctions.Expressions;
 using AspNetCore.Utilities.ManageBackgroundJobs;
 using AspNetCore.DataAccess.DbInitializers;
+using AspNetCore.Utilities.WebSocketImplementation;
 
 namespace AspNetCore.Utilities.Modules
 {
@@ -32,6 +33,7 @@ namespace AspNetCore.Utilities.Modules
 			services.AddScoped<SMSSending>();
 			services.AddScoped<ManageHangfireJobs>();
             services.AddScoped<IDbInitializer,DbInitializer>();
+            services.AddScoped<DashboardHub>();
         }
     }
 }

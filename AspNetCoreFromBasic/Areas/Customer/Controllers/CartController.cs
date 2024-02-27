@@ -8,10 +8,12 @@ using AspNetCore.Utilities.Enumerators;
 using AspNetCore.Utilities.Payments;
 using AspNetCore.Utilities.Security;
 using AspNetCore.Utilities.StaticDefinitions;
+using AspNetCore.Utilities.WebSocketImplementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Options;
@@ -33,13 +35,15 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 		private readonly StripePayments _stripePayments;
 		private readonly KhaltiPayments _khaltiPayments;
 		private readonly SMSSending _smsSending;
-		public CartController(IUnitOfWork unitOfWork, 
+		private IHubContext<DashboardHub> _dashboardhub;
+        public CartController(IUnitOfWork unitOfWork, 
 								UserManager<ApplicationUser> userManager,
 								IConfiguration configuration, 
 								EsewaPayments esewaPayments, 
 								StripePayments stripePayments,
 								KhaltiPayments khaltiPayments,
-								SMSSending smsSending)
+								SMSSending smsSending,
+                                IHubContext<DashboardHub> dashboardhub)
         {
             _repo = unitOfWork;
 			_userManager = userManager;
@@ -48,6 +52,7 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 			_stripePayments = stripePayments;
 			_khaltiPayments = khaltiPayments;
 			_smsSending = smsSending;
+			_dashboardhub = dashboardhub;
         }
         public IActionResult Index()
         {
@@ -143,7 +148,10 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 						_repo.OrderDetailsRepo.Add(orderDetails);
 					}
 					_repo.Save();
-					_repo.CommitTransaction();
+                    _dashboardhub.Clients.All.SendAsync("ReceiveMessage",
+													_repo.OrderHeaderRepo.GetCount().ToString(), 
+													$"{shoppingCartViewModel.OrderHeader.Name} has placed order Successfully on {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()}").GetAwaiter().GetResult();
+                    _repo.CommitTransaction();
 				}
 				catch (Exception)
 				{
@@ -155,7 +163,6 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 					_repo.DisposeTransaction();
 				}
 			}
-			ClearShoppingCart();
 			return await MakePayment(shoppingCartViewModel);
 		}
 		public async Task<IActionResult> MakePayment(ShoppingCartViewModel shoppingCartViewModel)
@@ -169,7 +176,8 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 					Response.Headers.Add("Location", esewaURL);
 					return new StatusCodeResult(303);
 				}
-				TempData["error"] = "Error making payment with Esewa";
+                ClearShoppingCart();
+                TempData["error"] = "Error making payment with Esewa";
 			}
 			else if (shoppingCartViewModel.PaymentMethod == nameof(PaymentMethodEnum.Khalti))
 			{
@@ -179,7 +187,8 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 					Response.Headers.Add("Location", khaltiURL);
 					return new StatusCodeResult(303);
 				}
-				TempData["error"] = "Error making payment with Khalti";
+                ClearShoppingCart();
+                TempData["error"] = "Error making payment with Khalti";
 			}
 			else if (shoppingCartViewModel.PaymentMethod == nameof(PaymentMethodEnum.Stripe))
 			{
@@ -189,7 +198,8 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 					Response.Headers.Add("Location", session.Url);
 					return new StatusCodeResult(303);
 				}
-				TempData["error"] = "Error making payment with Stripe";
+                ClearShoppingCart();
+                TempData["error"] = "Error making payment with Stripe";
 			}
 			return RedirectToAction(nameof(Summary));
 		}
@@ -202,7 +212,8 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 		public IActionResult StripeFailure()
 		{
 			TempData["error"] = "Payment Failed from Stripe";
-			return RedirectToAction(nameof(Summary));
+            ClearShoppingCart();
+            return RedirectToAction(nameof(Summary));
 		}
 		public IActionResult EsewaSuccess(string data)
 		{
@@ -213,6 +224,7 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 		public IActionResult EsewaFailure(string data)
 		{
 			TempData["error"] = "Payment Failed from Esewa";
+            ClearShoppingCart();
             return RedirectToAction("Index", "Order", new { area = "Admin"});
         }
 		public IActionResult KhaltiSuccess(PaymentKhaltiResponse khaltiPaymentResponse)
@@ -229,6 +241,7 @@ namespace AspNetCoreFromBasic.Areas.Customer.Controllers
 		public IActionResult KhaltiFailure(PaymentKhaltiResponse khaltiPaymentResponse)
 		{
 			TempData["error"] = "Payment Failed from Khalti";
+            ClearShoppingCart();
             return RedirectToAction("Index", "Order", new { area = "Admin"});
         }
 		public void ClearShoppingCart()
